@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echoes of Hell — Unified Code of Military Justice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg: #0a0a0a;
+    --text: #e8e4dc;
+    --red: #ff2a2a;
+    --cardinal: #ff6b1a;
+    --major: #e8a012;
+    --moderate: #c4a243;
+    --minor: #7a8a6e;
+    --dim: rgba(232,228,220,0.5);
+    --dimmer: rgba(232,228,220,0.3);
+    --dimmest: rgba(232,228,220,0.15);
+    --line: rgba(255,255,255,0.06);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: rgba(255,42,42,0.3); color: #fff; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  /* Scanline overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  }
+
+  @keyframes redPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.8; }
+    97% { opacity: 1; }
+    98% { opacity: 0.85; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- NAV DOTS --- */
+  .dot-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 50;
+  }
+  .dot-nav button {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .dot-nav button.active {
+    width: 10px; height: 10px;
+    background: var(--red);
+    box-shadow: 0 0 8px rgba(255,42,42,0.4);
+  }
+
+  /* --- HEADER --- */
+  header {
+    text-align: center;
+    padding: 80px 20px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center top, rgba(255,42,42,0.06) 0%, transparent 60%);
+  }
+  .classified-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(255,42,42,0.5);
+    margin-bottom: 16px;
+    animation: redPulse 3s ease infinite;
+    position: relative;
+  }
+  h1.main-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.1;
+    animation: flicker 8s infinite;
+    position: relative;
+  }
+  .red-bar {
+    width: 60px; height: 2px;
+    background: var(--red);
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(255,42,42,0.5);
+  }
+  .header-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: var(--dim);
+    text-transform: uppercase;
+    position: relative;
+  }
+  .header-quote {
+    font-style: italic;
+    font-size: 16px;
+    color: var(--dimmer);
+    margin-top: 24px;
+    position: relative;
+  }
+
+  /* --- MAIN --- */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  /* --- SECTION --- */
+  .section-block { margin-bottom: 48px; }
+  .section-header {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .section-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+  .section-header .source {
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(232,228,220,0.35);
+    margin-top: 6px;
+  }
+
+  /* --- CHARGE CARD --- */
+  .charge-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--line);
+    border-left-width: 3px;
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .charge-card:hover {
+    background: rgba(255,255,255,0.04);
+  }
+  .charge-card.expanded { background: rgba(255,255,255,0.03); }
+  .charge-card[data-severity="capital"] { border-left-color: var(--red); }
+  .charge-card[data-severity="cardinal"] { border-left-color: var(--cardinal); }
+  .charge-card[data-severity="major"] { border-left-color: var(--major); }
+  .charge-card[data-severity="moderate"] { border-left-color: var(--moderate); }
+  .charge-card[data-severity="minor"] { border-left-color: var(--minor); }
+
+  .charge-card.expanded[data-severity="capital"] { border-color: var(--red); border-left-color: var(--red); box-shadow: 0 0 12px rgba(255,42,42,0.3); }
+  .charge-card.expanded[data-severity="cardinal"] { border-color: var(--cardinal); border-left-color: var(--cardinal); box-shadow: 0 0 12px rgba(255,107,26,0.3); }
+  .charge-card.expanded[data-severity="major"] { border-color: var(--major); border-left-color: var(--major); box-shadow: 0 0 12px rgba(232,160,18,0.2); }
+  .charge-card.expanded[data-severity="moderate"] { border-color: var(--moderate); border-left-color: var(--moderate); }
+  .charge-card.expanded[data-severity="minor"] { border-color: var(--minor); border-left-color: var(--minor); }
+
+  .charge-card:hover[data-severity="capital"] { border-color: var(--red); border-left-color: var(--red); }
+  .charge-card:hover[data-severity="cardinal"] { border-color: var(--cardinal); border-left-color: var(--cardinal); }
+  .charge-card:hover[data-severity="major"] { border-color: var(--major); border-left-color: var(--major); }
+  .charge-card:hover[data-severity="moderate"] { border-color: var(--moderate); border-left-color: var(--moderate); }
+  .charge-card:hover[data-severity="minor"] { border-color: var(--minor); border-left-color: var(--minor); }
+
+  .charge-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .charge-label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .charge-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .charge-name {
+    font-family: 'Oswald', sans-serif;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .charge-arrow {
+    color: rgba(255,255,255,0.25);
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .charge-card.expanded .charge-arrow { transform: rotate(180deg); }
+
+  .charge-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .charge-card.expanded .charge-body {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .charge-body p {
+    color: rgba(232,228,220,0.75);
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 14px 0 12px;
+  }
+  .charge-classification {
+    display: inline-block;
+    border-radius: 2px;
+    padding: 5px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* severity-specific classification pill colors */
+  [data-severity="capital"] .charge-section,
+  [data-severity="capital"] .charge-classification { color: var(--red); }
+  [data-severity="capital"] .charge-classification { background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.25); }
+
+  [data-severity="cardinal"] .charge-section,
+  [data-severity="cardinal"] .charge-classification { color: var(--cardinal); }
+  [data-severity="cardinal"] .charge-classification { background: rgba(255,107,26,0.08); border: 1px solid rgba(255,107,26,0.25); }
+
+  [data-severity="major"] .charge-section,
+  [data-severity="major"] .charge-classification { color: var(--major); }
+  [data-severity="major"] .charge-classification { background: rgba(232,160,18,0.08); border: 1px solid rgba(232,160,18,0.25); }
+
+  [data-severity="moderate"] .charge-section,
+  [data-severity="moderate"] .charge-classification { color: var(--moderate); }
+  [data-severity="moderate"] .charge-classification { background: rgba(196,162,67,0.08); border: 1px solid rgba(196,162,67,0.25); }
+
+  [data-severity="minor"] .charge-section,
+  [data-severity="minor"] .charge-classification { color: var(--minor); }
+  [data-severity="minor"] .charge-classification { background: rgba(122,138,110,0.08); border: 1px solid rgba(122,138,110,0.25); }
+
+  /* --- SENTENCING TABLE --- */
+  .sentencing-table {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .sentencing-header {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 16px;
+  }
+  .sentencing-header span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+  .sentencing-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .sentencing-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
+  .sentencing-row:last-child { border-bottom: none; }
+  .sentencing-row .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .sentencing-row .sentence {
+    font-size: 14px;
+    color: rgba(232,228,220,0.65);
+  }
+
+  /* --- AGGRAVATING --- */
+  .agg-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .agg-intro {
+    font-size: 14px;
+    color: rgba(232,228,220,0.45);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .agg-item {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 5px 0;
+    margin-left: 8px;
+  }
+  .agg-item .bullet {
+    color: var(--red);
+    font-size: 8px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .agg-item span:last-child {
+    font-size: 14px;
+    color: rgba(232,228,220,0.6);
+  }
+
+  /* --- NOTE FROM COMMAND --- */
+  .command-note {
+    border-top: 1px solid rgba(255,42,42,0.2);
+    border-bottom: 1px solid rgba(255,42,42,0.2);
+    padding: 28px 24px;
+    margin: 32px 0;
+    background: rgba(255,42,42,0.02);
+    text-align: center;
+  }
+  .command-note .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: rgba(255,42,42,0.6);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .command-note p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(232,228,220,0.55);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .command-note .punch { color: var(--red); font-weight: 500; }
+
+  /* --- FOOTER --- */
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-bar {
+    width: 30px; height: 2px;
+    background: var(--red);
+    margin: 0 auto 16px;
+    box-shadow: 0 0 8px rgba(255,42,42,0.3);
+  }
+  footer .version {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(232,228,220,0.2);
+  }
+  footer .effective {
+    font-style: italic;
+    font-size: 12px;
+    color: var(--dimmest);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 600px) {
+    .sentencing-header, .sentencing-row {
+      grid-template-columns: 130px 1fr;
+    }
+    .dot-nav { right: 10px; }
+    main { padding: 0 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DOT NAV -->
+<nav class="dot-nav" id="dotNav"></nav>
+
+<!-- HEADER -->
+<header>
+  <div class="classified-tag fade-in">◆ CLASSIFIED DOCUMENT ◆</div>
+  <h1 class="main-title fade-in">ECHOES OF HELL</h1>
+  <div class="red-bar fade-in"></div>
+  <h2 class="header-sub fade-in">Unified Code of Military Justice</h2>
+  <p class="header-quote fade-in">"Play stupid games, win stupid prizes."</p>
+</header>
+
+<!-- MAIN CONTENT (injected by JS) -->
+<main id="mainContent"></main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bar"></div>
+  <p class="version">ECHOES OF HELL — UCMJ v1.0</p>
+  <p class="effective">Effective immediately. Ignorance of the law is not a defense.</p>
+</footer>
+
+<script>
+const SECTIONS = [
+  {
+    id: "title-i",
+    title: "TITLE I — CRIMES AGAINST THE BROTHERHOOD",
+    source: "Derived from the Cardinal Rule: Respect is the #1 rule.",
+    charges: [
+      { section: "§ 101", name: "Disrespect in the First Degree", body: "Willful, premeditated disrespect directed at a staff member, teammate, or community member with clear intent to demean, belittle, or provoke. Characterized by sustained, targeted hostility.", classification: "Cardinal Offense — Subject to immediate removal without explanation.", severity: "cardinal" },
+      { section: "§ 102", name: "Disrespect in the Second Degree", body: "Reckless or impulsive disrespect toward another member, lacking premeditation but demonstrating a clear disregard for the dignity of others. Includes heated outbursts, unnecessary hostility, and being a general shithead.", classification: "Major Offense — Warning to ban at staff discretion.", severity: "major" },
+      { section: "§ 103", name: "Disrespect in the Third Degree", body: "Passive-aggressive conduct, backhanded comments, or \"technically not breaking the rules\" behavior designed to skirt the spirit of the Cardinal Rule while violating its intent. You know what you're doing. We know what you're doing.", classification: "Moderate Offense — Warning issued. Don't push it.", severity: "moderate" }
+    ]
+  },
+  {
+    id: "title-ii",
+    title: "TITLE II — CRIMES AGAINST COMMAND AUTHORITY",
+    source: "Derived from: GM, Senior Admin, and Owner's word is law.",
+    charges: [
+      { section: "§ 201", name: "Contempt of Command", body: "Open defiance, mockery, or deliberate undermining of a directive issued by a GM, Senior Admin, or Owner. This includes public questioning of staff decisions in a disruptive manner.", classification: "Major Offense — The hole you dig is your grave.", severity: "major" },
+      { section: "§ 202", name: "Rules Lawyering", body: "The act of weaponizing technicalities, loopholes, or semantic arguments against staff in an attempt to justify poor behavior. \"Well technically the rules don't say I can't...\" Yes they do. Rule 2 says we can remove you for whatever reason. Congratulations, you played yourself.", classification: "Major Offense — Sentence enhanced by how annoying you are about it.", severity: "major" },
+      { section: "§ 203", name: "Failure to Exercise Common Sense", body: "Engaging in behavior that, while not explicitly listed in the rules, any reasonable human being would recognize as disruptive, stupid, or harmful. If you have to ask \"is this allowed?\" — it probably isn't.", classification: "Variable — Staff discretion. There is no 9-step program here.", severity: "moderate" }
+    ]
+  },
+  {
+    id: "title-iii",
+    title: "TITLE III — HATE CRIMES",
+    source: "Derived from: Absolutely no racism of any kind.",
+    charges: [
+      { section: "§ 301", name: "Racial Hate Speech in the First Degree", body: "The use of racial slurs, discriminatory language, or hate speech of any kind directed at any individual or group. This includes but is not limited to Vietnam-era racial slang and any ethnically discriminatory dialog. Zero tolerance. Zero exceptions.", classification: "Capital Offense — Immediate and permanent removal.", severity: "capital" },
+      { section: "§ 302", name: "Racial Hate Speech in the Second Degree", body: "\"Jokes,\" dog whistles, coded language, or edgelord behavior designed to flirt with the line of § 301 without crossing it overtly. The line doesn't exist here. If it smells like racism, it's racism.", classification: "Capital Offense — Immediate and permanent removal.", severity: "capital" }
+    ]
+  },
+  {
+    id: "title-iv",
+    title: "TITLE IV — COMMUNICATIONS VIOLATIONS",
+    source: "Derived from: Channel 48 is the tactical global channel.",
+    charges: [
+      { section: "§ 401", name: "Misuse of Tactical Communications", body: "Using Channel 48 for off-topic conversation, personal chatter, or any non-tactical communication. Channel 48 is for coordinating the fight, not for your life story.", classification: "Minor Offense — Warning issued.", severity: "minor" },
+      { section: "§ 402", name: "Sonic Warfare Against Friendlies", body: "Blasting music, soundboards, or otherwise polluting Channel 48 with non-tactical audio. This is a warzone, not your Spotify playlist.", classification: "Moderate Offense — Warning to temp ban.", severity: "moderate" },
+      { section: "§ 403", name: "Impersonation of Command Authority", body: "Making announcements or issuing orders over Channel 48 while posing as or implying staff authority. Only admin announcements are authorized on 48.", classification: "Major Offense — Warning to ban depending on severity.", severity: "major" }
+    ]
+  },
+  {
+    id: "title-v",
+    title: "TITLE V — COMBAT CRIMES",
+    source: "Derived from: No teamkilling, stealing vehicles, or disrupting experience.",
+    charges: [
+      { section: "§ 501", name: "Teamkilling in the First Degree", body: "Premeditated, intentional killing of a teammate. You loaded the weapon, you aimed it at a friendly, you pulled the trigger. There is no defense.", classification: "Capital Offense — Instant ban.", severity: "capital" },
+      { section: "§ 502", name: "Teamkilling in the Second Degree", body: "Reckless engagement resulting in friendly casualties. Spraying into a firefight without checking your sectors, driving a truck through a friendly position, or otherwise being criminally negligent with the lives of your teammates.", classification: "Major Offense — Warning to ban at staff discretion.", severity: "major" },
+      { section: "§ 503", name: "Grand Theft — Military Asset", body: "The unauthorized seizure, theft, or commandeering of a vehicle or asset claimed by or assigned to another player or squad. That helicopter isn't yours. That truck isn't yours. If someone's using it, keep your hands off it.", classification: "Major Offense — Warning to ban.", severity: "major" },
+      { section: "§ 504", name: "Griefing", body: "Any deliberate action taken with the intent to disrupt, sabotage, or ruin the gameplay experience for other players. This is the catch-all. If you're being a problem on purpose, this is your charge.", classification: "Major Offense — Warning to instant ban depending on severity.", severity: "major" }
+    ]
+  },
+  {
+    id: "title-vi",
+    title: "TITLE VI — CRIMES AGAINST ORDER",
+    source: "Derived from: Drama in all forms is not allowed.",
+    charges: [
+      { section: "§ 601", name: "Incitement of Drama in the First Degree", body: "Deliberately manufacturing, escalating, or spreading interpersonal conflict within the servers or community channels. Stirring the pot, fanning flames, and playing people against each other.", classification: "Major Offense — Surgical removal from the community.", severity: "major" },
+      { section: "§ 602", name: "Incitement of Drama in the Second Degree", body: "Bringing personal grievances, complaints, or beef into public channels instead of using the proper channels (tickets for player issues, direct contact with Senior Admin or Owner for staff issues). Your dirty laundry stays out of the servers.", classification: "Moderate Offense — Warning issued. Use the ticket system.", severity: "moderate" },
+      { section: "§ 603", name: "Spreading of Toxicity", body: "Persistent negativity, complaining, or attitude that poisons the community atmosphere. Not a single incident, but a pattern. Cancer gets cut out.", classification: "Major Offense — Removal at staff discretion.", severity: "major" }
+    ]
+  },
+  {
+    id: "title-vii",
+    title: "TITLE VII — CRIMES AGAINST THE INTEGRITY OF THE SIMULATION",
+    source: "Derived from: Abuse and distribution of bugs is not okay.",
+    charges: [
+      { section: "§ 701", name: "Exploitation in the First Degree", body: "Knowingly using a bug, glitch, or unintended feature to gain an unfair advantage, crash the server, or otherwise compromise the integrity of gameplay. This includes weapon exploits, duplication glitches, and anything that is obviously not working as intended.", classification: "Capital Offense — Permanent ban.", severity: "capital" },
+      { section: "§ 702", name: "Exploitation in the Second Degree", body: "Discovering a bug or exploit and failing to report it, instead keeping the knowledge for personal use or sharing it with others outside of proper reporting channels.", classification: "Major Offense — Ban.", severity: "major" },
+      { section: "§ 703", name: "Distribution of Exploit Intelligence", body: "Sharing knowledge of bugs, exploits, server crash methods, or cheats with other players. You didn't just commit a crime — you armed others to commit crimes.", classification: "Capital Offense — Permanent ban.", severity: "capital" },
+      { section: "§ 704", name: "Use of Third-Party Cheats", body: "Employment of any external cheating software, scripts, or tools. This isn't even a conversation.", classification: "Capital Offense — Permanent ban. No appeal.", severity: "capital" }
+    ]
+  }
+];
+
+const SENTENCING = [
+  { classification: "Capital Offense", sentence: "Immediate permanent ban. No appeals process.", severity: "capital" },
+  { classification: "Major Offense", sentence: "Warning to permanent ban at staff discretion.", severity: "major" },
+  { classification: "Moderate Offense", sentence: "Verbal warning to temporary ban.", severity: "moderate" },
+  { classification: "Minor Offense", sentence: "Verbal warning. Repeated violations escalate.", severity: "minor" },
+  { classification: "Cardinal Offense", sentence: "Removal without hesitation or explanation.", severity: "cardinal" },
+];
+
+const AGGRAVATING = [
+  "Prior offenses of any kind",
+  "Rules lawyering during the disciplinary process (see § 202)",
+  "Showing zero remorse or doubling down",
+  "Committing multiple offenses in a single session",
+  "Being told to stop and continuing anyway",
+];
+
+// Build the page
+const main = document.getElementById('mainContent');
+const dotNav = document.getElementById('dotNav');
+
+// Build sections
+SECTIONS.forEach((section, si) => {
+  // Nav dot
+  const dot = document.createElement('button');
+  dot.dataset.target = section.id;
+  dot.title = section.title;
+  dot.addEventListener('click', () => {
+    document.getElementById(section.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  dotNav.appendChild(dot);
+
+  // Section wrapper
+  const wrapper = document.createElement('div');
+  wrapper.className = 'section-block';
+  wrapper.id = section.id;
+
+  // Header
+  wrapper.innerHTML = `
+    <div class="section-header fade-in">
+      <h2>${section.title}</h2>
+      <p class="source">${section.source}</p>
+    </div>
+  `;
+
+  // Charges
+  section.charges.forEach((charge, ci) => {
+    const card = document.createElement('div');
+    card.className = 'charge-card fade-in';
+    card.dataset.severity = charge.severity;
+    card.style.transitionDelay = `${ci * 0.07}s`;
+
+    card.innerHTML = `
+      <div class="charge-top">
+        <div class="charge-label">
+          <span class="charge-section">${charge.section}</span>
+          <span class="charge-name">${charge.name}</span>
+        </div>
+        <span class="charge-arrow">▾</span>
+      </div>
+      <div class="charge-body">
+        <p>${charge.body}</p>
+        <span class="charge-classification">${charge.classification}</span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+    wrapper.appendChild(card);
+  });
+
+  main.appendChild(wrapper);
+});
+
+// Sentencing Guidelines
+const sentBlock = document.createElement('div');
+sentBlock.className = 'section-block';
+sentBlock.innerHTML = `
+  <div class="section-header fade-in">
+    <h2>SENTENCING GUIDELINES</h2>
+  </div>
+  <div class="sentencing-table fade-in" style="margin-top:16px">
+    <div class="sentencing-header">
+      <span>Classification</span>
+      <span>Standard Sentence</span>
+    </div>
+    ${SENTENCING.map(r => `
+      <div class="sentencing-row">
+        <span class="label" style="color:var(--${r.severity})">${r.classification}</span>
+        <span class="sentence">${r.sentence}</span>
+      </div>
+    `).join('')}
+  </div>
+`;
+main.appendChild(sentBlock);
+
+// Aggravating factors
+const aggBlock = document.createElement('div');
+aggBlock.className = 'section-block fade-in';
+aggBlock.innerHTML = `
+  <h3 class="agg-title">Aggravating Factors</h3>
+  <p class="agg-intro">Sentence severity may be enhanced if the offender exhibits any of the following:</p>
+  ${AGGRAVATING.map(f => `
+    <div class="agg-item">
+      <span class="bullet">■</span>
+      <span>${f}</span>
+    </div>
+  `).join('')}
+`;
+main.appendChild(aggBlock);
+
+// Note from Command
+const noteBlock = document.createElement('div');
+noteBlock.className = 'command-note fade-in';
+noteBlock.innerHTML = `
+  <div class="label">Note From Command</div>
+  <p>There is no 9-step rehabilitation program. We have too many good people here to waste time on bad ones.
+  These classifications are guidelines — staff reserves the right to skip straight to removal for any reason.
+  If you're reading this and thinking "how do I get around this?" — <span class="punch">you're already the problem.</span></p>
+`;
+main.appendChild(noteBlock);
+
+// Intersection Observer for fade-ins and dot nav
+const fadeEls = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+const sectionEls = document.querySelectorAll('.section-block');
+const navDots = dotNav.querySelectorAll('button');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navDots.forEach(d => d.classList.toggle('active', d.dataset.target === e.target.id));
+    }
+  });
+}, { threshold: 0.3 });
+sectionEls.forEach(el => { if (el.id) sectionObserver.observe(el); });
+</script>
+</body>
+</html>
