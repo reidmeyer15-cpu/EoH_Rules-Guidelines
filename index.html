@@ -39,6 +39,7 @@
   ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
+  /* CRT scanlines */
   body::after {
     content: '';
     position: fixed;
@@ -54,6 +55,34 @@
   .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+  /* --- FULL-PAGE BACKGROUND --- */
+  .bg-layer {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -2;
+    overflow: hidden;
+  }
+  .bg-layer .bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+    filter: grayscale(50%) brightness(0.35);
+  }
+  .bg-layer .bg-image.active { opacity: 1; }
+  /* Dark overlay on top of images */
+  .bg-layer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.88) 70%, var(--bg) 100%);
+    z-index: 1;
+  }
+
+  /* Nav dots */
   .dot-nav {
     position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
     display: flex; flex-direction: column; gap: 10px; align-items: center; z-index: 50;
@@ -68,46 +97,54 @@
     box-shadow: 0 0 8px rgba(255,42,42,0.4);
   }
 
+  /* --- HEADER --- */
   header {
-    text-align: center; padding: 80px 20px 60px;
-    position: relative; overflow: hidden;
+    text-align: center; padding: 100px 20px 80px;
+    position: relative;
   }
-  header::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at center top, rgba(255,42,42,0.06) 0%, transparent 60%);
-  }
+  header > * { position: relative; z-index: 2; }
   .server-tag {
     font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 4px;
-    color: rgba(255,42,42,0.5); margin-bottom: 16px;
-    animation: redPulse 3s ease infinite; position: relative;
+    color: rgba(255,42,42,0.5); margin-bottom: 16px; animation: redPulse 3s ease infinite;
   }
   h1.main-title {
     font-family: 'Oswald', sans-serif; font-size: clamp(36px, 7vw, 72px);
     font-weight: 700; letter-spacing: 8px; text-transform: uppercase;
-    color: var(--text); line-height: 1.1; animation: flicker 8s infinite; position: relative;
+    color: var(--text); line-height: 1.1; animation: flicker 8s infinite;
   }
   .red-bar { width: 60px; height: 2px; background: var(--red); margin: 20px auto; box-shadow: 0 0 10px rgba(255,42,42,0.5); }
   .header-sub {
     font-family: 'Oswald', sans-serif; font-size: clamp(14px, 2.5vw, 20px);
-    font-weight: 300; letter-spacing: 6px; color: var(--dim);
-    text-transform: uppercase; position: relative;
+    font-weight: 300; letter-spacing: 6px; color: var(--dim); text-transform: uppercase;
   }
-  .header-quote { font-style: italic; font-size: 16px; color: var(--dimmer); margin-top: 24px; position: relative; }
+  .header-quote { font-style: italic; font-size: 16px; color: var(--dimmer); margin-top: 24px; }
 
-  /* Escalation notice */
+  /* --- DISCLAIMER --- */
+  .disclaimer {
+    max-width: 720px; margin: -30px auto 36px; padding: 20px 24px;
+    border: 1px solid rgba(255,42,42,0.2); border-left: 3px solid var(--red);
+    background: rgba(10,10,10,0.85); border-radius: 2px;
+    position: relative; z-index: 2;
+  }
+  .disclaimer .disc-title {
+    font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .disclaimer p { font-size: 14px; line-height: 1.7; color: rgba(232,228,220,0.6); margin-bottom: 8px; }
+  .disclaimer p:last-child { margin-bottom: 0; }
+  .disclaimer strong { color: var(--red); }
+
+  /* --- ESCALATION BOX --- */
   .escalation-notice {
-    max-width: 720px; margin: -20px auto 40px; padding: 16px 24px;
+    max-width: 720px; margin: 0 auto 40px; padding: 16px 24px;
     border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--dayban);
-    background: rgba(255,255,255,0.02); border-radius: 2px;
+    background: rgba(10,10,10,0.85); border-radius: 2px;
+    position: relative; z-index: 2;
   }
-  .escalation-notice p {
-    font-size: 14px; line-height: 1.6; color: rgba(232,228,220,0.55);
-  }
-  .escalation-notice strong {
-    color: var(--dayban); font-family: 'Oswald', sans-serif; letter-spacing: 0.5px;
-  }
+  .escalation-notice p { font-size: 14px; line-height: 1.6; color: rgba(232,228,220,0.55); }
+  .escalation-notice strong { color: var(--dayban); font-family: 'Oswald', sans-serif; letter-spacing: 0.5px; }
 
-  main { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+  main { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; position: relative; z-index: 2; }
 
   .section-block { margin-bottom: 48px; }
   .section-header { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 8px; }
@@ -118,12 +155,13 @@
   .section-header .source { font-style: italic; font-size: 13px; color: rgba(232,228,220,0.35); margin-top: 6px; }
 
   .charge-card {
-    background: rgba(255,255,255,0.02); border: 1px solid var(--line);
+    background: rgba(10,10,10,0.7); border: 1px solid var(--line);
     border-left-width: 3px; border-radius: 2px; padding: 16px 20px;
     margin-bottom: 8px; cursor: pointer; transition: all 0.3s ease;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
   }
-  .charge-card:hover { background: rgba(255,255,255,0.04); }
-  .charge-card.expanded { background: rgba(255,255,255,0.03); }
+  .charge-card:hover { background: rgba(10,10,10,0.8); }
+  .charge-card.expanded { background: rgba(10,10,10,0.85); }
 
   .charge-card[data-severity="perm"] { border-left-color: var(--perm); }
   .charge-card[data-severity="weekban"] { border-left-color: var(--weekban); }
@@ -131,16 +169,11 @@
   .charge-card[data-severity="lastwarn"] { border-left-color: var(--lastwarn); }
   .charge-card[data-severity="warn"] { border-left-color: var(--warn); }
 
-  .charge-card.expanded[data-severity="perm"],
-  .charge-card:hover[data-severity="perm"] { border-color: var(--perm); border-left-color: var(--perm); box-shadow: 0 0 12px rgba(255,42,42,0.3); }
-  .charge-card.expanded[data-severity="weekban"],
-  .charge-card:hover[data-severity="weekban"] { border-color: var(--weekban); border-left-color: var(--weekban); box-shadow: 0 0 12px rgba(224,90,42,0.25); }
-  .charge-card.expanded[data-severity="dayban"],
-  .charge-card:hover[data-severity="dayban"] { border-color: var(--dayban); border-left-color: var(--dayban); box-shadow: 0 0 12px rgba(232,160,18,0.2); }
-  .charge-card.expanded[data-severity="lastwarn"],
-  .charge-card:hover[data-severity="lastwarn"] { border-color: var(--lastwarn); border-left-color: var(--lastwarn); }
-  .charge-card.expanded[data-severity="warn"],
-  .charge-card:hover[data-severity="warn"] { border-color: var(--warn); border-left-color: var(--warn); }
+  .charge-card.expanded[data-severity="perm"], .charge-card:hover[data-severity="perm"] { border-color: var(--perm); border-left-color: var(--perm); box-shadow: 0 0 12px rgba(255,42,42,0.3); }
+  .charge-card.expanded[data-severity="weekban"], .charge-card:hover[data-severity="weekban"] { border-color: var(--weekban); border-left-color: var(--weekban); box-shadow: 0 0 12px rgba(224,90,42,0.25); }
+  .charge-card.expanded[data-severity="dayban"], .charge-card:hover[data-severity="dayban"] { border-color: var(--dayban); border-left-color: var(--dayban); box-shadow: 0 0 12px rgba(232,160,18,0.2); }
+  .charge-card.expanded[data-severity="lastwarn"], .charge-card:hover[data-severity="lastwarn"] { border-color: var(--lastwarn); border-left-color: var(--lastwarn); }
+  .charge-card.expanded[data-severity="warn"], .charge-card:hover[data-severity="warn"] { border-color: var(--warn); border-left-color: var(--warn); }
 
   .charge-top { display: flex; justify-content: space-between; align-items: center; }
   .charge-label { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -160,12 +193,14 @@
     color: rgba(232,228,220,0.5); font-size: 13px; line-height: 1.6;
     list-style: none; padding: 2px 0;
   }
-  .charge-body .examples li::before {
-    content: '›'; margin-right: 8px; color: rgba(255,255,255,0.2);
-  }
+  .charge-body .examples li::before { content: '›'; margin-right: 8px; color: rgba(255,255,255,0.2); }
   .charge-classification {
     display: inline-block; border-radius: 2px; padding: 5px 12px;
     font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .min-note {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: rgba(232,228,220,0.25); margin-left: 8px; letter-spacing: 0.3px;
   }
 
   [data-severity="perm"] .charge-section, [data-severity="perm"] .charge-classification { color: var(--perm); }
@@ -179,7 +214,7 @@
   [data-severity="warn"] .charge-section, [data-severity="warn"] .charge-classification { color: var(--warn); }
   [data-severity="warn"] .charge-classification { background: rgba(122,138,110,0.08); border: 1px solid rgba(122,138,110,0.25); }
 
-  .sentencing-table { border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+  .sentencing-table { border: 1px solid var(--line); border-radius: 2px; overflow: hidden; background: rgba(10,10,10,0.7); backdrop-filter: blur(4px); }
   .sentencing-header {
     display: grid; grid-template-columns: 180px 1fr;
     background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 16px;
@@ -197,15 +232,7 @@
   .agg-item .bullet { color: var(--red); font-size: 8px; flex-shrink: 0; margin-top: 4px; }
   .agg-item span:last-child { font-size: 14px; color: rgba(232,228,220,0.6); }
 
-  .bottom-note {
-    border-top: 1px solid rgba(255,42,42,0.2); border-bottom: 1px solid rgba(255,42,42,0.2);
-    padding: 28px 24px; margin: 32px 0; background: rgba(255,42,42,0.02); text-align: center;
-  }
-  .bottom-note .label { font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 3px; color: rgba(255,42,42,0.6); margin-bottom: 14px; text-transform: uppercase; }
-  .bottom-note p { font-size: 15px; line-height: 1.7; color: rgba(232,228,220,0.55); max-width: 580px; margin: 0 auto; }
-  .bottom-note .punch { color: var(--red); font-weight: 500; }
-
-  footer { text-align: center; padding: 30px 20px 50px; border-top: 1px solid rgba(255,255,255,0.04); }
+  footer { text-align: center; padding: 30px 20px 50px; border-top: 1px solid rgba(255,255,255,0.04); position: relative; z-index: 2; }
   .footer-bar { width: 30px; height: 2px; background: var(--red); margin: 0 auto 16px; box-shadow: 0 0 8px rgba(255,42,42,0.3); }
   footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(232,228,220,0.2); }
   footer .effective { font-style: italic; font-size: 12px; color: var(--dimmest); margin-top: 6px; }
@@ -216,11 +243,23 @@
     .sentencing-header, .sentencing-row { grid-template-columns: 130px 1fr; }
     .dot-nav { right: 10px; }
     main { padding: 0 16px 60px; }
-    .escalation-notice { margin-left: 16px; margin-right: 16px; }
+    .disclaimer, .escalation-notice { margin-left: 16px; margin-right: 16px; }
+    .bg-layer .bg-image { background-attachment: scroll; }
   }
 </style>
 </head>
 <body>
+
+<!-- BACKGROUND IMAGE LAYER - crossfades as you scroll -->
+<div class="bg-layer" id="bgLayer">
+  <div class="bg-image active" style="background-image: url('images/welcome.jpg');" data-index="0"></div>
+  <div class="bg-image" style="background-image: url('images/cockpit.jpg');" data-index="1"></div>
+  <div class="bg-image" style="background-image: url('images/troops.png');" data-index="2"></div>
+  <div class="bg-image" style="background-image: url('images/firefight.png');" data-index="3"></div>
+  <div class="bg-image" style="background-image: url('images/huey-jungle.png');" data-index="4"></div>
+  <div class="bg-image" style="background-image: url('images/tank-night.png');" data-index="5"></div>
+  <div class="bg-image" style="background-image: url('images/propaganda.png');" data-index="6"></div>
+</div>
 
 <nav class="dot-nav" id="dotNav"></nav>
 
@@ -231,6 +270,13 @@
   <h2 class="header-sub fade-in">Server Rules & Guidelines</h2>
   <p class="header-quote fade-in">"Play stupid games, win stupid prizes."</p>
 </header>
+
+<div class="disclaimer fade-in">
+  <div class="disc-title">Before You Read</div>
+  <p>The offenses listed below are <strong>examples</strong> — not an exhaustive list of every possible scenario. Every situation is different, and GMs use their judgment to determine the appropriate response. Something not listed here can still get you banned if a GM determines it warrants one.</p>
+  <p>The punishment levels shown are the <strong>most common minimum</strong> for each type of offense. <strong>The maximum for any offense can be a permanent ban</strong> at staff discretion. Being receptive and respectful when staff talks to you goes a long way. Being a dick about it makes it worse.</p>
+  <p>Staff reserves the right to skip levels and go straight to a ban if the situation calls for it. There's no appeals committee and no 12-step program. If you're reading this and thinking "how do I get around these?" — <strong>you're already the problem.</strong></p>
+</div>
 
 <div class="escalation-notice fade-in">
   <p><strong>How Escalation Works:</strong> Every offense flows from least to greatest. If you're receptive when staff talks to you, you'll generally get the listed punishment. If you're confrontational, rude, or aggressive during the process, the punishment automatically bumps up one level. Repeat offenses also escalate. Don't make it worse for yourself.</p>
@@ -246,21 +292,35 @@
 </footer>
 
 <script>
+// Background images crossfade as user scrolls through sections
+const bgImages = document.querySelectorAll('.bg-image');
+const totalBgs = bgImages.length;
+let currentBg = 0;
+
+function updateBackground() {
+  const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  const newBg = Math.min(Math.floor(scrollPercent * totalBgs), totalBgs - 1);
+  if (newBg !== currentBg) {
+    bgImages[currentBg].classList.remove('active');
+    bgImages[newBg].classList.add('active');
+    currentBg = newBg;
+  }
+}
+window.addEventListener('scroll', updateBackground, { passive: true });
+
 const SECTIONS = [
   {
-    id: "respect",
-    title: "RESPECT & CONDUCT",
+    id: "respect", title: "RESPECT & CONDUCT",
     source: "The #1 rule. Respect is given unconditionally — until you give us a reason not to.",
     charges: [
       { section: "§ 1.1", name: "Disrespect Toward Staff / GMs", body: "Being disrespectful, aggressive, or confrontational toward staff or GMs. They're volunteering their time to keep the server running. Treat them accordingly.", examples: ["Insulting or mocking a GM during or after a ruling", "Being aggressive when staff is correcting your behavior", "Publicly undermining staff decisions"], classification: "1–2 Week Ban", severity: "weekban" },
-      { section: "§ 1.2", name: "Disrespect Toward Players", body: "Mild aggressive behavior or disrespect toward other players. We're all here to play — keep it civil.", examples: ["Targeted harassment or insults in voice/text", "Extreme aggressive behavior toward other players", "Worked-up player who needs to de-escalate"], classification: "1HR – 3 Day Ban", severity: "dayban" },
-      { section: "§ 1.3", name: "Being Non-Receptive", body: "Being argumentative about the rules or refusing to accept corrective action from staff. If staff tells you to stop, you stop. Arguing about it makes it worse.", examples: ["Refusing to acknowledge a warning", "Rules lawyering — \"technically the rules don't say...\"", "Continuing the behavior after being told to stop"], classification: "1HR – 3 Day Ban (escalates from Warning)", severity: "dayban" },
-      { section: "§ 1.4", name: "Non-English Communication", body: "Not speaking English or refusing to communicate in English on the server. We need everyone on the same page for coordination.", classification: "Warning → Escalation", severity: "warn" }
+      { section: "§ 1.2", name: "Disrespect Toward Players", body: "Mild to extreme aggressive behavior or disrespect toward other players. We're all here to play — keep it civil.", examples: ["Targeted harassment or insults in voice/text", "Extreme aggressive behavior toward other players", "Worked-up player who needs to de-escalate"], classification: "1HR – 3 Day Ban", severity: "dayban" },
+      { section: "§ 1.3", name: "Being Non-Receptive", body: "Being argumentative about the rules or refusing to accept corrective action from staff. If staff tells you to stop, you stop. Arguing about it makes it worse.", examples: ["Refusing to acknowledge a warning", "Rules lawyering — \"technically the rules don't say...\"", "Continuing the behavior after being told to stop"], classification: "1HR – 3 Day Ban", severity: "dayban" },
+      { section: "§ 1.4", name: "Non-English Communication", body: "Not speaking English or refusing to communicate in English on the server. We need everyone on the same page for coordination.", classification: "Warning", severity: "warn" }
     ]
   },
   {
-    id: "comms",
-    title: "RADIO & COMMUNICATIONS",
+    id: "comms", title: "RADIO & COMMUNICATIONS",
     source: "Channel 48 is the tactical global channel. Keep it clean.",
     charges: [
       { section: "§ 2.1", name: "Misuse of Channel 48", body: "Using Channel 48 for anything other than tactical communication. Off-topic chatter, personal conversations, and non-tactical callouts don't belong here.", examples: ["Off-topic conversation on 48", "Excessive unrelated chatter", "Using 48 as a social channel"], classification: "Warning", severity: "warn" },
@@ -269,51 +329,46 @@ const SECTIONS = [
     ]
   },
   {
-    id: "teamkilling",
-    title: "TEAMKILLING",
+    id: "teamkilling", title: "TEAMKILLING",
     source: "Check your targets. Friendly fire isn't friendly.",
     charges: [
-      { section: "§ 3.1", name: "Mass Teamkilling", body: "Killing multiple teammates intentionally, or teamkilling and immediately logging off. If intent is unclear on a TK-and-logoff, you may appeal — but mass TK is permanent, no questions asked.", examples: ["Intentionally killing multiple teammates", "Teamkilling and immediately disconnecting"], classification: "Permanent Ban (appeal option if intent unclear on logoff)", severity: "perm" },
-      { section: "§ 3.2", name: "Intentional Teamkilling", body: "Deliberately killing a teammate. Includes overdosing players with medical supplies. One intentional TK is one too many.", examples: ["Purposefully shooting a teammate", "Overdosing a player with medical items", "Trolling that results in teammate deaths (crashing helis, ramming vehicles)"], classification: "1–2 Week Ban", severity: "weekban" },
-      { section: "§ 3.3", name: "Retaliatory Teamkilling", body: "Killing a teammate because they killed you or did something you didn't like. Two wrongs don't make a right — open a ticket instead.", classification: "Last Warning Strike → Ban", severity: "lastwarn" },
-      { section: "§ 3.4", name: "Uncoordinated CAS Causing TKs", body: "Calling in or executing a CAS strike without proper coordination, resulting in friendly casualties. This includes calling CAS on a point with GIs on it.", examples: ["CAS on an active point resulting in GI deaths", "Uncoordinated airstrikes causing friendly fire"], classification: "Last Warning Strike → Ban", severity: "lastwarn" },
+      { section: "§ 3.1", name: "Mass Teamkilling / TK + Logoff", body: "Killing multiple teammates intentionally, or teamkilling and immediately logging off. If intent is unclear on a TK-and-logoff, you may appeal — but mass TK is permanent, no questions asked.", examples: ["Intentionally killing multiple teammates", "Teamkilling and immediately disconnecting"], classification: "Permanent Ban (appeal if intent unclear on logoff)", severity: "perm" },
+      { section: "§ 3.2", name: "Intentional Teamkilling", body: "Deliberately killing a teammate. Includes overdosing players with medical supplies. One intentional TK is one too many.", examples: ["Purposefully shooting a teammate", "Overdosing a player with medical items", "Aggressive trolling resulting in teammate deaths"], classification: "1–2 Week Ban", severity: "weekban" },
+      { section: "§ 3.3", name: "Retaliatory Teamkilling", body: "Killing a teammate because they killed you or did something you didn't like. Two wrongs don't make a right — open a ticket instead.", classification: "Last Warning Strike", severity: "lastwarn" },
+      { section: "§ 3.4", name: "Uncoordinated CAS Causing TKs", body: "Calling in or executing a CAS strike without proper coordination, resulting in friendly casualties. This includes calling CAS on a point with GIs on it.", examples: ["CAS on an active point resulting in GI deaths", "Uncoordinated airstrikes causing friendly fire"], classification: "Last Warning Strike", severity: "lastwarn" },
       { section: "§ 3.5", name: "Accidental / Negligent TKs", body: "Multiple accidental teamkills from failure to PID (Positive Identification). Accidents happen, but if it keeps happening, it's negligence.", examples: ["Multiple accidental TKs in a session", "Failure to identify targets before engaging", "Consensual friend-on-friend horseplay TKs"], classification: "Warning", severity: "warn" }
     ]
   },
   {
-    id: "vehicles",
-    title: "VEHICLES & ASSETS",
+    id: "vehicles", title: "VEHICLES & ASSETS",
     source: "If it's not yours, don't touch it.",
     charges: [
       { section: "§ 4.1", name: "Intentional Vehicle Theft", body: "Knowingly taking a vehicle that's claimed by or assigned to another player or squad. You know it's not yours. Don't take it.", classification: "1HR – 3 Day Ban", severity: "dayban" },
       { section: "§ 4.2", name: "Unintentional Vehicle Theft", body: "Taking a vehicle you didn't realize was claimed. New players get some grace here, but learn the system and ask before hopping in.", classification: "Last Warning Strike", severity: "lastwarn" },
-      { section: "§ 4.3", name: "Vehicle Destruction / Griefing", body: "Deliberately destroying, decommissioning, or wasting vehicles and structures. These are shared assets — treat them like it.", examples: ["Destroying friendly vehicles", "Decommissioning structures", "Crashing vehicles on purpose"], classification: "Warning → Escalation", severity: "warn" },
-      { section: "§ 4.4", name: "Misuse of Air Assets", body: "Using helicopters and air assets improperly — not transporting players, ignoring CAS requests, joyriding medical helis, etc. Air assets are force multipliers, not taxis for your ego.", examples: ["Not accepting transport requests", "Ignoring CAS calls when assigned CAS role", "Misusing medical helicopters", "Joyriding with no tactical purpose"], classification: "Warning → Escalation", severity: "warn" }
+      { section: "§ 4.3", name: "Vehicle Destruction / Griefing", body: "Deliberately destroying, decommissioning, or wasting vehicles and structures. These are shared assets — treat them like it.", examples: ["Destroying friendly vehicles", "Decommissioning structures", "Crashing vehicles on purpose"], classification: "Warning", severity: "warn" },
+      { section: "§ 4.4", name: "Misuse of Air Assets", body: "Using helicopters and air assets improperly — not transporting players, ignoring CAS requests, joyriding medical helis, etc.", examples: ["Not accepting transport requests", "Ignoring CAS calls when assigned CAS role", "Misusing medical helicopters", "Joyriding with no tactical purpose"], classification: "Warning", severity: "warn" }
     ]
   },
   {
-    id: "gameplay",
-    title: "GAMEPLAY & OBJECTIVES",
+    id: "gameplay", title: "GAMEPLAY & OBJECTIVES",
     source: "Play the objective. Don't waste everyone's time.",
     charges: [
       { section: "§ 5.1", name: "Spawning Unnecessary AI", body: "Flying or traveling to non-frontline objectives and spawning in AI unnecessarily. This wastes server resources and creates problems for everyone.", classification: "Warning", severity: "warn" },
       { section: "§ 5.2", name: "Griefing", body: "Any deliberate action taken to disrupt, sabotage, or ruin the game for other players. This is the catch-all — if you're being a problem on purpose, this is your charge.", classification: "Warning → 1HR–3 Day Ban", severity: "dayban" },
-      { section: "§ 5.3", name: "Trolling", body: "Disruptive trolling behavior that affects other players' experience. Taking heli controls to cause a crash, ramming vehicles, or other aggressive trolling.", examples: ["Grabbing heli controls causing a crash", "Crashing vehicles on purpose resulting in TKs", "Other aggressive trolling behaviors"], classification: "1–2 Week Ban", severity: "weekban" }
+      { section: "§ 5.3", name: "Trolling", body: "Disruptive trolling behavior that affects other players' experience.", examples: ["Grabbing heli controls causing a crash", "Crashing vehicles on purpose resulting in TKs", "Other aggressive trolling behaviors"], classification: "1–2 Week Ban", severity: "weekban" }
     ]
   },
   {
-    id: "discrimination",
-    title: "DISCRIMINATION & HATE SPEECH",
+    id: "discrimination", title: "DISCRIMINATION & HATE SPEECH",
     source: "No racism of any kind. This includes Vietnam-era slang. Zero tolerance.",
     charges: [
       { section: "§ 6.1", name: "Hard Racial Slurs", body: "Use of hard racial slurs or remarks, including those directed at other players. There is no warning for this. There is no appeal. You're done.", classification: "Permanent Ban — No Appeal", severity: "perm" },
-      { section: "§ 6.2", name: "Mild Racial Slurs (Undirected)", body: "Use of mild racial slurs not directed at another player (e.g. the G-word). Still not okay, but if it's a first-time offense and you're receptive when staff talks to you, you'll get a strike instead of an immediate ban.", classification: "Last Warning Strike → Ban", severity: "lastwarn" },
+      { section: "§ 6.2", name: "Mild Racial Slurs (Undirected)", body: "Use of mild racial slurs not directed at another player. Still not okay, but if it's a first-time offense and you're receptive when staff talks to you, you'll get a strike instead of an immediate ban.", classification: "Last Warning Strike", severity: "lastwarn" },
       { section: "§ 6.3", name: "Coded Discrimination", body: "Dog whistles, coded language, or edgelord behavior designed to be discriminatory without being obvious. There's no grey area. If it smells like racism, it's racism.", classification: "Last Warning Strike → Permanent Ban", severity: "lastwarn" }
     ]
   },
   {
-    id: "drama",
-    title: "DRAMA & TOXICITY",
+    id: "drama", title: "DRAMA & TOXICITY",
     source: "Keep it out of the servers. Handle it in tickets.",
     charges: [
       { section: "§ 7.1", name: "Starting Drama", body: "Deliberately stirring up conflict, playing people against each other, or escalating problems in public channels. If you have an issue with a player, open a ticket. If you have an issue with staff, talk to a Senior Admin or Owner directly.", classification: "Warning → 1HR–3 Day Ban", severity: "dayban" },
@@ -322,8 +377,7 @@ const SECTIONS = [
     ]
   },
   {
-    id: "exploits",
-    title: "EXPLOITS & CHEATING",
+    id: "exploits", title: "EXPLOITS & CHEATING",
     source: "Don't abuse bugs. Don't cheat. Report what you find.",
     charges: [
       { section: "§ 8.1", name: "Cheating", body: "Using any external cheating software, scripts, or tools. Not a conversation. Not a warning.", classification: "Permanent Ban — No Appeal", severity: "perm" },
@@ -336,10 +390,10 @@ const SECTIONS = [
 
 const SENTENCING = [
   { classification: "Permanent Ban", sentence: "You're done. Immediate removal. Some offenses allow appeal, others don't.", severity: "perm" },
-  { classification: "1–2 Week Ban", sentence: "Serious offense. You're out for 1-2 weeks depending on severity.", severity: "weekban" },
-  { classification: "1HR – 3 Day Ban", sentence: "Timed ban. Length scales with the offense.", severity: "dayban" },
-  { classification: "Last Warning Strike", sentence: "Your final chance. Next offense in this category is a ban.", severity: "lastwarn" },
-  { classification: "Warning", sentence: "First-time heads up. Be receptive and correct the behavior.", severity: "warn" },
+  { classification: "1–2 Week Ban", sentence: "Serious offense. Out for 1-2 weeks minimum depending on severity.", severity: "weekban" },
+  { classification: "1HR – 3 Day Ban", sentence: "Timed ban. Length scales with the offense. This is the minimum.", severity: "dayban" },
+  { classification: "Last Warning Strike", sentence: "Final chance. Next offense in this category is a ban. Minimum.", severity: "lastwarn" },
+  { classification: "Warning", sentence: "First-time heads up. Be receptive and correct the behavior. Minimum.", severity: "warn" },
 ];
 
 const AGGRAVATING = [
@@ -356,24 +410,17 @@ const sevColor = { perm: "var(--perm)", weekban: "var(--weekban)", dayban: "var(
 const main = document.getElementById('mainContent');
 const dotNav = document.getElementById('dotNav');
 
-SECTIONS.forEach((section) => {
+SECTIONS.forEach((section, si) => {
   const dot = document.createElement('button');
   dot.dataset.target = section.id;
   dot.title = section.title;
-  dot.addEventListener('click', () => {
-    document.getElementById(section.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  dot.addEventListener('click', () => document.getElementById(section.id).scrollIntoView({ behavior: 'smooth', block: 'start' }));
   dotNav.appendChild(dot);
 
   const wrapper = document.createElement('div');
   wrapper.className = 'section-block';
   wrapper.id = section.id;
-  wrapper.innerHTML = `
-    <div class="section-header fade-in">
-      <h2>${section.title}</h2>
-      <p class="source">${section.source}</p>
-    </div>
-  `;
+  wrapper.innerHTML = `<div class="section-header fade-in"><h2>${section.title}</h2><p class="source">${section.source}</p></div>`;
 
   section.charges.forEach((charge, ci) => {
     const card = document.createElement('div');
@@ -385,6 +432,7 @@ SECTIONS.forEach((section) => {
     if (charge.examples && charge.examples.length > 0) {
       examplesHtml = `<ul class="examples">${charge.examples.map(e => `<li>${e}</li>`).join('')}</ul>`;
     }
+    const minNote = charge.severity !== 'perm' ? '<span class="min-note">TYPICAL MIN — MAX CAN BE PERM BAN</span>' : '';
 
     card.innerHTML = `
       <div class="charge-top">
@@ -397,7 +445,7 @@ SECTIONS.forEach((section) => {
       <div class="charge-body">
         <p>${charge.body}</p>
         ${examplesHtml}
-        <span class="charge-classification">${charge.classification}</span>
+        <span class="charge-classification">${charge.classification}</span>${minNote}
       </div>
     `;
     card.addEventListener('click', () => card.classList.toggle('expanded'));
@@ -411,18 +459,12 @@ const sentBlock = document.createElement('div');
 sentBlock.className = 'section-block';
 sentBlock.innerHTML = `
   <div class="section-header fade-in"><h2>PUNISHMENT LADDER</h2>
-    <p class="source">Flows from least to greatest. Repeat offenses and bad attitudes escalate you up.</p>
+    <p class="source">Flows from least to greatest. These are typical minimums — the max for anything can be a permanent ban.</p>
   </div>
   <div class="sentencing-table fade-in" style="margin-top:16px">
-    <div class="sentencing-header"><span>Level</span><span>What It Means</span></div>
-    ${SENTENCING.map(r => `
-      <div class="sentencing-row">
-        <span class="label" style="color:${sevColor[r.severity]}">${r.classification}</span>
-        <span class="sentence">${r.sentence}</span>
-      </div>
-    `).join('')}
-  </div>
-`;
+    <div class="sentencing-header"><span>Level (Minimum)</span><span>What It Means</span></div>
+    ${SENTENCING.map(r => `<div class="sentencing-row"><span class="label" style="color:${sevColor[r.severity]}">${r.classification}</span><span class="sentence">${r.sentence}</span></div>`).join('')}
+  </div>`;
 main.appendChild(sentBlock);
 
 // Aggravating
@@ -431,36 +473,25 @@ aggBlock.className = 'section-block fade-in';
 aggBlock.innerHTML = `
   <h3 class="agg-title">What Makes It Worse</h3>
   <p class="agg-intro">Any of these will bump your punishment up one or more levels:</p>
-  ${AGGRAVATING.map(f => `<div class="agg-item"><span class="bullet">■</span><span>${f}</span></div>`).join('')}
-`;
+  ${AGGRAVATING.map(f => `<div class="agg-item"><span class="bullet">■</span><span>${f}</span></div>`).join('')}`;
 main.appendChild(aggBlock);
 
-// Bottom note
-const noteBlock = document.createElement('div');
-noteBlock.className = 'bottom-note fade-in';
-noteBlock.innerHTML = `
-  <div class="label">The Bottom Line</div>
-  <p>We're not here to babysit. These rules exist so everyone can have a good time. Staff reserves the right to
-  skip levels and go straight to a ban if the situation calls for it. Be receptive, use common sense, and treat
-  people the way you'd want to be treated. If you're reading this and thinking "how do I get around these?" — <span class="punch">you're already the problem.</span></p>
-`;
-main.appendChild(noteBlock);
-
 // Observers
-const fadeEls = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-fadeEls.forEach(el => fadeObserver.observe(el));
+document.querySelectorAll('.fade-in').forEach(el => {
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 }).observe(el);
+});
 
-const sectionEls = document.querySelectorAll('.section-block');
 const navDots = dotNav.querySelectorAll('button');
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) navDots.forEach(d => d.classList.toggle('active', d.dataset.target === e.target.id));
-  });
-}, { threshold: 0.3 });
-sectionEls.forEach(el => { if (el.id) sectionObserver.observe(el); });
+document.querySelectorAll('.section-block').forEach(el => {
+  if (!el.id) return;
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) navDots.forEach(d => d.classList.toggle('active', d.dataset.target === e.target.id));
+    });
+  }, { threshold: 0.3 }).observe(el);
+});
 </script>
 </body>
 </html>
