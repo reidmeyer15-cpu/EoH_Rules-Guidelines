@@ -163,6 +163,18 @@
 
   .logo-bottom { display: block; margin: 40px auto 0; width: 120px; height: auto; animation: logoFlicker 5s infinite; animation-delay: 1.5s; mix-blend-mode: screen; }
 
+
+  .member-about {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 1px;
+    color: var(--red);
+    margin-top: 4px;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+  }
+  .member-card.show-about .member-about {
+    max-height: 40px; opacity: 1; margin-top: 6px;
+  }
   footer { text-align: center; padding: 40px 20px 60px; background: #000000; position: relative; z-index: 2; }
   .footer-bar { width: 30px; height: 2px; background: var(--red); margin: 0 auto 16px; box-shadow: 0 0 8px rgba(255,42,42,0.3); }
   footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(232,228,220,0.2); }
@@ -229,7 +241,6 @@ var TEAM = [
   { group: "Admins", role: "admin", members: [
     { name: "Starvin_Marvin" },
     { name: "Bubbatmw" },
-    { name: "OG_VINCEDEPISSBOSS" },
     { name: "Pockets" },
     { name: "IAmAGuest" },
     { name: "LONER18" },
@@ -238,7 +249,7 @@ var TEAM = [
     { name: "Rage" },
     { name: "SinFoeLane" },
     { name: "NobleFenris" },
-    { name: "OG_VINCEDEBOSS" },
+    { name: "OG_VINCEDEBOSS", about: "LEADER OF DORKS" },
     { name: "KvFxBombastic" },
     { name: "ghost dragon56" },
     { name: "WARPIGZ" },
@@ -281,12 +292,18 @@ TEAM.forEach(function(group) {
     var initials = member.name.charAt(0).toUpperCase();
     var title = member.title || roleLabel;
 
+    var aboutHtml = member.about ? '<div class="member-about">' + member.about + '</div>' : '';
     card.innerHTML =
       '<div class="member-avatar">' + initials + '</div>' +
       '<div class="member-info">' +
         '<div class="member-name">' + member.name + '</div>' +
         '<div class="member-role">' + title + '</div>' +
+        aboutHtml +
       '</div>';
+    if (member.about) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function() { card.classList.toggle('show-about'); });
+    }
 
     grid.appendChild(card);
   });
