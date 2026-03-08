@@ -164,6 +164,17 @@
   .logo-bottom { display: block; margin: 40px auto 0; width: 120px; height: auto; animation: logoFlicker 5s infinite; animation-delay: 1.5s; mix-blend-mode: screen; }
 
 
+
+  .member-card.glow-name .member-name {
+    animation: fireGlow 8s ease-in-out infinite;
+  }
+  @keyframes fireGlow {
+    0%, 100% { color: #ff2a2a; text-shadow: 0 0 8px rgba(255,42,42,0.6), 0 0 20px rgba(255,42,42,0.3), 0 0 40px rgba(255,20,0,0.15); }
+    20% { color: #ff6a00; text-shadow: 0 0 10px rgba(255,106,0,0.7), 0 0 25px rgba(255,80,0,0.4), 0 0 50px rgba(255,60,0,0.2); }
+    40% { color: #ffaa00; text-shadow: 0 0 12px rgba(255,170,0,0.8), 0 0 30px rgba(255,140,0,0.5), 0 0 60px rgba(255,100,0,0.25); }
+    60% { color: #ffe040; text-shadow: 0 0 14px rgba(255,224,64,0.7), 0 0 28px rgba(255,180,20,0.4), 0 0 55px rgba(255,120,0,0.2); }
+    80% { color: #ff8800; text-shadow: 0 0 10px rgba(255,136,0,0.7), 0 0 24px rgba(255,100,0,0.4), 0 0 45px rgba(255,50,0,0.2); }
+  }
   .member-about {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 1px;
@@ -221,45 +232,44 @@
 <script>
 var TEAM = [
   { group: "Owners", role: "owner", members: [
-    { name: "CrazyDustyH" },
+    { name: "CrazyDustyH", about: "Admin Probationary Board Member" },
     { name: "McLaggins" },
     { name: "Jager" }
   ]},
   { group: "Head Admin", role: "head", members: [
-    { name: "=45=", title: "Head Admin" }
+    { name: "=45=", title: "Head Admin", about: "Admin Probationary Board Member" }
   ]},
   { group: "Management", role: "special", members: [
-    { name: "Yan", title: "Onboarding Manager" }
+    { name: "Yan", title: "Onboarding Manager", about: "Admin Probationary Board Member" }
   ]},
   { group: "Senior Admins", role: "senior", members: [
-    { name: "Reid", title: "Senior Admin" },
-    { name: "WAVE", title: "Senior Admin" }
+    { name: "Reid", title: "Senior Admin", about: "Helicopter & Napalm Wizard · Developer · Admin Probationary Board Member", glow: true },
+    { name: "WAVE", title: "Senior Admin", about: "Admin Probationary Board Member" }
   ]},
   { group: "Social Media", role: "special", members: [
-    { name: "Aqua", title: "Admin / Social Media Manager" }
+    { name: "Aqua", title: "Admin / Social Media Manager", about: "Admin Probationary Board Member" }
   ]},
   { group: "Admins", role: "admin", members: [
     { name: "Starvin_Marvin" },
-    { name: "Bubbatmw" },
+    { name: "Bubbatmw", about: "Admin Probationary Board Member" },
     { name: "Pockets" },
     { name: "IAmAGuest" },
     { name: "LONER18" },
     { name: "RebelOfTheNorth_" },
     { name: "cs731565" },
-    { name: "Rage" },
+    { name: "Rage", about: "Admin Probationary Board Member" },
     { name: "SinFoeLane" },
     { name: "NobleFenris" },
     { name: "OG_VINCEDEBOSS", about: "LEADER OF DORKS" },
     { name: "KvFxBombastic" },
     { name: "ghost dragon56" },
-    { name: "WARPIGZ" },
-    { name: "ThunderCock" },
-    { name: "Yuri" },
+    { name: "ThunderCock", about: "Admin Probationary Board Member" },
+    { name: "Yuri", about: "Admin Probationary Board Member" },
     { name: "UncleG" },
     { name: "Crazybro245" },
     { name: "Mr. Decoy" },
-    { name: "Winnie the flu" },
-    { name: "KingOfHearts" },
+    { name: "Winnie the flu", about: "Admin Probationary Board Member" },
+    { name: "KingOfHearts", about: "Admin Probationary Board Member" },
     { name: "Exo Famoose" },
     { name: "OiledUpGranny" }
   ]}
@@ -300,6 +310,7 @@ TEAM.forEach(function(group) {
         '<div class="member-role">' + title + '</div>' +
         aboutHtml +
       '</div>';
+    if (member.glow) { card.classList.add('glow-name'); }
     if (member.about) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function() { card.classList.toggle('show-about'); });
