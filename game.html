@@ -690,14 +690,16 @@ function loop(){
         // RPG: single shot, much slower aim
         if(!n.fired&&n.aim>=n.aimMax){
           var spd=4.5+wave*0.2;
-          rpgs.push({x:sx,y:n.y-8,vx:Math.cos(n.rpgAng)*spd,vy:Math.sin(n.rpgAng)*spd,trail:[],life:180});
+          var rpgLife=Math.ceil(Math.sqrt(W*W+H*H)/spd)+60;
+          rpgs.push({x:sx,y:n.y-8,vx:Math.cos(n.rpgAng)*spd,vy:Math.sin(n.rpgAng)*spd,trail:[],life:rpgLife});
           n.fired=true;n.flash=8;booms.push({x:sx,y:n.y-10,l:8,m:8,small:true});sndRPGlaunch();}
       }else{
         // MG: fires bursts of bullets, less damage each but harder to avoid
         if(!n.fired&&n.aim>=n.aimMax){n.fired=true;n.burstCount=0;}
         if(n.fired&&n.burstCount<(4+Math.floor(wave/3))&&n.aim%(8+Math.floor(Math.random()*4))===0){
           var spd=7;var spread=(Math.random()-0.5)*30;
-          mgBullets.push({x:sx,y:n.y-8,vx:Math.cos(n.rpgAng)*spd+spread*0.05,vy:Math.sin(n.rpgAng)*spd,life:80});
+          var mgLife=Math.ceil(Math.sqrt(W*W+H*H)/spd)+30;
+          mgBullets.push({x:sx,y:n.y-8,vx:Math.cos(n.rpgAng)*spd+spread*0.05,vy:Math.sin(n.rpgAng)*spd,life:mgLife});
           n.burstCount++;n.flash=3;sndMG();
         }
       }
