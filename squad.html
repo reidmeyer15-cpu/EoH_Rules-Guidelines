@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echoes of Hell — Squad Registration</title>
+<meta name="description" content="Request to register your in-game squad within the Echoes of Hell Arma Reforger community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root { --bg: #0a0a0a; --text: #c0c0c8; --red: #ff2a2a; --dim: rgba(192,192,200,0.5); --dimmer: rgba(192,192,200,0.3); --dimmest: rgba(192,192,200,0.15); --line: rgba(255,255,255,0.06); }
+  body { background: var(--bg); color: var(--text); font-family: 'PT Serif', Georgia, serif; font-size: 23px; -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(255,42,42,0.3); color: #fff; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
+
+  @keyframes redPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  @keyframes flicker { 0%, 95%, 100% { opacity: 1; } 96% { opacity: 0.8; } 97% { opacity: 1; } 98% { opacity: 0.85; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lineGrow { from { width: 0; } to { width: 60px; } }
+
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 32px; height: 48px; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  .site-nav a:hover { color: var(--text); }
+  .site-nav a.active { color: var(--red); border-bottom-color: var(--red); }
+  .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
+
+  header { text-align: center; padding: 100px 20px 50px; position: relative; }
+  .server-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 4px; color: rgba(255,42,42,0.5); margin-bottom: 16px; animation: redPulse 3s ease infinite, fadeUp 1s ease 0.4s both; }
+  h1.main-title { font-family: 'Oswald', sans-serif; font-size: clamp(32px, 6vw, 60px); font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--text); line-height: 1.1; animation: flicker 8s infinite, fadeUp 1s ease 0.6s both; }
+  .red-bar { width: 0; height: 2px; background: var(--red); margin: 20px auto; box-shadow: 0 0 10px rgba(255,42,42,0.5); animation: lineGrow 0.8s ease 1s both; }
+  .header-sub { font-family: 'Oswald', sans-serif; font-size: clamp(13px, 2vw, 18px); font-weight: 300; letter-spacing: 5px; color: var(--dim); text-transform: uppercase; animation: fadeUp 1s ease 1.2s both; }
+
+  .info-block { max-width: 640px; margin: 0 auto 40px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--red); background: rgba(10,10,10,0.88); border-radius: 2px; animation: fadeUp 0.8s ease 1.4s both; }
+  .info-block p { font-size: 14px; line-height: 1.7; color: rgba(192,192,200,0.55); }
+  .info-block p + p { margin-top: 8px; }
+  .info-block strong { color: var(--red); }
+  .info-block a { color: rgba(255,42,42,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,42,42,0.3); transition: all 0.2s; }
+  .info-block a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  main { max-width: 640px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 2; }
+
+  .form-card { background: rgba(10,10,10,0.7); border: 1px solid var(--line); border-radius: 2px; padding: 32px 28px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeUp 0.8s ease 1.6s both; }
+  .form-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 2px; color: var(--text); text-transform: uppercase; margin-bottom: 24px; }
+
+  .field { margin-bottom: 22px; }
+  .field label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(192,192,200,0.4); margin-bottom: 8px; }
+  .field input, .field textarea, .field select { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; padding: 12px 14px; font-family: 'PT Serif', Georgia, serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: rgba(255,42,42,0.4); box-shadow: 0 0 8px rgba(255,42,42,0.1); }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(192,192,200,0.2); }
+  .field textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='rgba(192,192,200,0.3)' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+  .field select option { background: #0a0a0a; color: var(--text); }
+  .field .hint { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(192,192,200,0.25); margin-top: 6px; line-height: 1.5; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .submit-btn { display: block; width: 100%; padding: 14px 24px; margin-top: 28px; background: rgba(255,42,42,0.1); border: 1px solid rgba(255,42,42,0.3); border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--red); cursor: pointer; transition: all 0.3s ease; }
+  .submit-btn:hover { background: rgba(255,42,42,0.2); border-color: rgba(255,42,42,0.6); color: #fff; box-shadow: 0 0 20px rgba(255,42,42,0.2); transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .error-msg { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); margin-top: 4px; display: none; }
+  .field.has-error input, .field.has-error textarea, .field.has-error select { border-color: rgba(255,42,42,0.5); }
+  .field.has-error .error-msg { display: block; }
+
+  /* Success state */
+  .success-card { display: none; text-align: center; background: rgba(10,10,10,0.7); border: 1px solid rgba(255,42,42,0.2); border-radius: 2px; padding: 48px 28px; backdrop-filter: blur(6px); }
+  .success-card.visible { display: block; animation: fadeUp 0.6s ease both; }
+  .success-icon { font-size: 48px; color: var(--red); margin-bottom: 16px; }
+  .success-card h2 { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--text); margin-bottom: 12px; }
+  .success-card p { font-size: 14px; line-height: 1.7; color: rgba(192,192,200,0.55); max-width: 420px; margin: 0 auto; }
+
+  .discord-preview { text-align: left; max-width: 480px; margin: 24px auto 0; padding: 16px 18px; background: #2b2d31; border-radius: 8px; border-left: 4px solid var(--red); font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; color: #dbdee1; white-space: pre-wrap; word-break: break-word; user-select: all; -webkit-user-select: all; }
+
+  .copy-btn { display: inline-block; margin-top: 16px; padding: 10px 28px; background: rgba(255,42,42,0.1); border: 1px solid rgba(255,42,42,0.3); border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--red); cursor: pointer; transition: all 0.3s; position: relative; }
+  .copy-btn:hover { background: rgba(255,42,42,0.2); border-color: rgba(255,42,42,0.5); color: #fff; }
+
+  .copy-toast { display: inline-block; margin-left: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(80,200,80,0.8); opacity: 0; transition: opacity 0.3s; vertical-align: middle; }
+  .copy-toast.show { opacity: 1; }
+
+  .success-card .discord-note { margin-top: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(192,192,200,0.4); letter-spacing: 0.5px; line-height: 1.7; }
+  .success-card .discord-note a { color: var(--red); text-decoration: none; border-bottom: 1px solid rgba(255,42,42,0.3); }
+  .success-card .discord-note a:hover { border-bottom-color: var(--red); }
+  .reset-btn { display: inline-block; margin-top: 20px; padding: 10px 24px; background: transparent; border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--dimmer); cursor: pointer; transition: all 0.3s; }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--dim); }
+
+  footer { text-align: center; padding: 40px 20px 60px; position: relative; z-index: 2; }
+  .footer-bar { width: 30px; height: 2px; background: var(--red); margin: 0 auto 16px; box-shadow: 0 0 8px rgba(255,42,42,0.3); }
+  footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(192,192,200,0.2); }
+  footer a { color: rgba(255,42,42,0.4); text-decoration: none; transition: color 0.3s; }
+  footer a:hover { color: var(--red); }
+
+  @media (max-width: 600px) {
+    .site-nav { gap: 16px; padding: 0 16px; font-size: 11px; }
+    main { padding: 0 16px 60px; }
+    .info-block { margin-left: 16px; margin-right: 16px; }
+    .form-card { padding: 24px 20px; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  /* UNDER CONSTRUCTION OVERLAY */
+  .uc-blur { filter: blur(6px) brightness(0.5); pointer-events: none; user-select: none; }
+  .uc-overlay { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .uc-tape-top, .uc-tape-bottom { position: absolute; left: -10%; width: 120%; height: 52px; background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 20px, #d4a847 20px, #d4a847 40px); opacity: 0.85; box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 2; }
+  .uc-tape-top { top: 28%; transform: rotate(-3deg); }
+  .uc-tape-bottom { bottom: 28%; transform: rotate(3deg); }
+  .uc-tape-mid { position: absolute; left: -5%; width: 110%; height: 60px; top: 50%; transform: translateY(-50%) rotate(-1.5deg); background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 20px, #d4a847 20px, #d4a847 40px); opacity: 0.9; box-shadow: 0 4px 30px rgba(0,0,0,0.6); z-index: 2; }
+  .uc-content { position: relative; z-index: 3; text-align: center; padding: 20px; }
+  .uc-icon { font-size: 48px; margin-bottom: 16px; filter: drop-shadow(0 0 20px rgba(212,168,71,0.3)); }
+  .uc-title { font-family: 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 48px); font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.8); margin-bottom: 12px; }
+  .uc-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 3px; color: rgba(212,168,71,0.7); text-transform: uppercase; text-shadow: 0 1px 10px rgba(0,0,0,0.8); margin-bottom: 24px; }
+  .uc-desc { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; text-shadow: 0 1px 8px rgba(0,0,0,0.8); margin-bottom: 28px; }
+  .uc-back { display: inline-block; padding: 10px 24px; background: rgba(212,168,71,0.15); border: 1px solid rgba(212,168,71,0.4); font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--amber, #d4a847); text-decoration: none; transition: all 0.3s ease; }
+  .uc-back:hover { background: rgba(212,168,71,0.25); border-color: rgba(212,168,71,0.6); color: #fff; transform: translateY(-2px); }
+
+  body.construction-mode header,
+  body.construction-mode .form-section,
+  body.construction-mode .info-block,
+  body.construction-mode footer { filter: blur(6px) brightness(0.4); pointer-events: none; user-select: none; }
+</style>
+</head>
+<body class="construction-mode">
+
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="rules.html">Rules</a>
+  <a href="team.html">Meet the Team</a>
+  <a href="faq.html">FAQ</a>
+  <a href="coming-soon.html">Coming Soon</a>
+  <a href="squad.html" class="active">Squads</a>
+  <a href="game.html">&#9734;</a>
+</nav>
+
+<!-- UNDER CONSTRUCTION OVERLAY -->
+<div class="uc-overlay">
+  <div class="uc-tape-top"></div>
+  <div class="uc-tape-mid"></div>
+  <div class="uc-tape-bottom"></div>
+  <div class="uc-content">
+    <div class="uc-icon">&#9888;</div>
+    <div class="uc-title">Under Construction</div>
+    <div class="uc-sub">Squad Registration</div>
+    <p class="uc-desc">This feature is currently being built. Squad registration will be available soon &mdash; check back later or watch the Discord for announcements.</p>
+    <a class="uc-back" href="index.html">&larr; Back to Home</a>
+  </div>
+</div>
+
+
+
+<header>
+  <div class="server-tag">ECHOES OF HELL</div>
+  <h1 class="main-title">Squad Registration</h1>
+  <div class="red-bar"></div>
+  <div class="header-sub">Request to form a recognized squad</div>
+</header>
+
+<div class="info-block">
+  <p>In-game squads are welcome within EoH — they're a great way to group up and enjoy the server together. To get your squad recognized, fill out the form below.</p>
+  <p>Creating or promoting <strong>external groups</strong> that pull players away from our Discord or servers is not allowed. Excessive advertising or pressuring players at MOB will not be tolerated. See <a href="rules.html">§ 7.6</a> for full details.</p>
+</div>
+
+<main>
+  <div class="form-card" id="formCard">
+    <div class="form-title">Squad Request Form</div>
+
+    <div class="field-row">
+      <div class="field" id="fName">
+        <label for="squadName">Squad Name</label>
+        <input type="text" id="squadName" placeholder="e.g. Air Cav" maxlength="40" autocomplete="off">
+        <div class="error-msg">Squad name is required</div>
+      </div>
+      <div class="field" id="fTag">
+        <label for="squadTag">Squad Tag <span style="color:rgba(192,192,200,0.2)">(optional)</span></label>
+        <input type="text" id="squadTag" placeholder="e.g. [ACAV]" maxlength="8" autocomplete="off">
+        <div class="hint">Max 8 characters</div>
+      </div>
+    </div>
+
+    <div class="field" id="fLeader">
+      <label for="leaderName">Squad Leader (In-Game Name)</label>
+      <input type="text" id="leaderName" placeholder="Your in-game name" maxlength="40" autocomplete="off">
+      <div class="error-msg">Squad leader name is required</div>
+    </div>
+
+    <div class="field" id="fDiscord">
+      <label for="discordName">Discord Username</label>
+      <input type="text" id="discordName" placeholder="e.g. yourname" maxlength="40" autocomplete="off">
+      <div class="error-msg">Discord username is required</div>
+    </div>
+
+    <div class="field" id="fFocus">
+      <label for="squadFocus">Squad Focus</label>
+      <select id="squadFocus">
+        <option value="">Select a focus...</option>
+        <option value="infantry">Infantry</option>
+        <option value="medical">Medical / Medevac</option>
+        <option value="aircav">Air Cavalry / CAS</option>
+        <option value="transport">Transport / Logistics</option>
+        <option value="recon">Recon / Patrol</option>
+        <option value="mixed">Mixed / General</option>
+        <option value="other">Other</option>
+      </select>
+      <div class="error-msg">Please select a focus</div>
+    </div>
+
+    <div class="field-row">
+      <div class="field" id="fSize">
+        <label for="squadSize">Estimated Members</label>
+        <select id="squadSize">
+          <option value="">Select...</option>
+          <option value="2-5">2 – 5</option>
+          <option value="6-10">6 – 10</option>
+          <option value="11-20">11 – 20</option>
+          <option value="20+">20+</option>
+        </select>
+        <div class="error-msg">Please select a size</div>
+      </div>
+      <div class="field" id="fServer">
+        <label for="primaryServer">Primary Server</label>
+        <select id="primaryServer">
+          <option value="">Select...</option>
+          <option value="server1">Server 1</option>
+          <option value="server2">Server 2</option>
+          <option value="server3">Server 3</option>
+          <option value="all">All Servers</option>
+        </select>
+        <div class="error-msg">Please select a server</div>
+      </div>
+    </div>
+
+    <div class="field" id="fDesc">
+      <label for="squadDesc">Description</label>
+      <textarea id="squadDesc" placeholder="What's your squad about? What kind of players are you looking for?" maxlength="500"></textarea>
+      <div class="hint">Brief description of your squad's mission and vibe</div>
+      <div class="error-msg">A short description is required</div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" type="button">Submit Request</button>
+  </div>
+
+  <div class="success-card" id="successCard">
+    <div class="success-icon">&#10003;</div>
+    <h2>Copied to Clipboard</h2>
+    <p>Your squad request has been formatted and copied. Open a ticket in Discord and paste it in.</p>
+    <div class="discord-preview" id="discordPreview"></div>
+    <button class="copy-btn" id="copyBtn" type="button">Copy Again</button>
+    <div class="copy-toast" id="copyToast">Copied!</div>
+    <div class="discord-note">
+      <strong>Next step:</strong> Open <strong>#create-a-ticket</strong> in <a href="https://discord.gg/echoes-of-hell" target="_blank">Discord</a>, paste the message above, and submit.
+    </div>
+    <button class="reset-btn" id="resetBtn" type="button">Submit Another</button>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-bar"></div>
+  <div class="version"><a href="https://discord.gg/echoes-of-hell" target="_blank">DISCORD.GG/ECHOES-OF-HELL</a></div>
+</footer>
+
+<script>
+(function() {
+  var form = document.getElementById('formCard');
+  var success = document.getElementById('successCard');
+  var btn = document.getElementById('submitBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var copyBtn = document.getElementById('copyBtn');
+  var copyToast = document.getElementById('copyToast');
+  var discordText = '';
+
+  var fields = {
+    name:    { el: document.getElementById('squadName'),    wrap: document.getElementById('fName'),    required: true },
+    tag:     { el: document.getElementById('squadTag'),     wrap: document.getElementById('fTag'),     required: false },
+    leader:  { el: document.getElementById('leaderName'),   wrap: document.getElementById('fLeader'),  required: true },
+    discord: { el: document.getElementById('discordName'),  wrap: document.getElementById('fDiscord'), required: true },
+    focus:   { el: document.getElementById('squadFocus'),   wrap: document.getElementById('fFocus'),   required: true },
+    size:    { el: document.getElementById('squadSize'),    wrap: document.getElementById('fSize'),    required: true },
+    server:  { el: document.getElementById('primaryServer'),wrap: document.getElementById('fServer'),  required: true },
+    desc:    { el: document.getElementById('squadDesc'),    wrap: document.getElementById('fDesc'),    required: true }
+  };
+
+  Object.keys(fields).forEach(function(key) {
+    var f = fields[key];
+    f.el.addEventListener('input', function() { f.wrap.classList.remove('has-error'); });
+    f.el.addEventListener('change', function() { f.wrap.classList.remove('has-error'); });
+  });
+
+  function buildDiscordMessage() {
+    var squadName = fields.name.el.value.trim();
+    var tag = fields.tag.el.value.trim();
+    var leader = fields.leader.el.value.trim();
+    var disc = fields.discord.el.value.trim();
+    var focusText = fields.focus.el.options[fields.focus.el.selectedIndex].text;
+    var sizeText = fields.size.el.value;
+    var serverText = fields.server.el.options[fields.server.el.selectedIndex].text;
+    var desc = fields.desc.el.value.trim();
+
+    var lines = [];
+    lines.push('**SQUAD REGISTRATION REQUEST**');
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('**Squad Name:** ' + squadName + (tag ? ' `' + tag + '`' : ''));
+    lines.push('**Squad Leader:** ' + leader);
+    lines.push('**Discord:** @' + disc);
+    lines.push('**Focus:** ' + focusText);
+    lines.push('**Estimated Size:** ' + sizeText);
+    lines.push('**Primary Server:** ' + serverText);
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('**Description:**');
+    lines.push(desc);
+
+    return lines.join('\n');
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function() { return true; }).catch(function() { return fallbackCopy(text); });
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); document.body.removeChild(ta); return true; }
+    catch(e) { document.body.removeChild(ta); return false; }
+  }
+
+  function flashToast() {
+    copyToast.classList.add('show');
+    setTimeout(function() { copyToast.classList.remove('show'); }, 2000);
+  }
+
+  btn.addEventListener('click', function() {
+    var valid = true;
+    Object.keys(fields).forEach(function(key) {
+      var f = fields[key];
+      f.wrap.classList.remove('has-error');
+      if (f.required && !f.el.value.trim()) {
+        f.wrap.classList.add('has-error');
+        valid = false;
+      }
+    });
+    if (!valid) return;
+
+    discordText = buildDiscordMessage();
+
+    // Show preview (HTML-escaped, with bold markers visible)
+    var preview = document.getElementById('discordPreview');
+    preview.textContent = discordText;
+
+    // Auto-copy
+    copyToClipboard(discordText).then(function() { flashToast(); });
+
+    form.style.display = 'none';
+    success.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  copyBtn.addEventListener('click', function() {
+    copyToClipboard(discordText).then(function() { flashToast(); });
+  });
+
+  resetBtn.addEventListener('click', function() {
+    Object.keys(fields).forEach(function(key) {
+      fields[key].el.value = '';
+      fields[key].wrap.classList.remove('has-error');
+    });
+    discordText = '';
+    success.classList.remove('visible');
+    form.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
