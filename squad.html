@@ -97,35 +97,23 @@
   footer a:hover { color: var(--red); }
 
   @media (max-width: 600px) {
-    .site-nav { gap: 16px; padding: 0 16px; font-size: 11px; }
+    .site-nav { gap: 4px 12px; padding: 6px 12px; height: auto; min-height: 48px; flex-wrap: wrap; }
+    .site-nav a { font-size: 11px; letter-spacing: 1px; padding: 8px 0; }
+    header { padding: 90px 16px 32px; }
     main { padding: 0 16px 60px; }
-    .info-block { margin-left: 16px; margin-right: 16px; }
+    .info-block { margin-left: 16px; margin-right: 16px; padding: 16px 18px; }
+    .info-block p { font-size: 13px; }
     .form-card { padding: 24px 20px; }
     .field-row { grid-template-columns: 1fr; gap: 0; }
+    .field input, .field textarea, .field select { font-size: 16px; padding: 14px; }
+    .submit-btn { padding: 16px 24px; font-size: 14px; }
+    .discord-preview { font-size: 11px; padding: 14px 16px; }
   }
 
-  /* UNDER CONSTRUCTION OVERLAY */
-  .uc-blur { filter: blur(6px) brightness(0.5); pointer-events: none; user-select: none; }
-  .uc-overlay { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .uc-tape-top, .uc-tape-bottom { position: absolute; left: -10%; width: 120%; height: 52px; background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 20px, #d4a847 20px, #d4a847 40px); opacity: 0.85; box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 2; }
-  .uc-tape-top { top: 28%; transform: rotate(-3deg); }
-  .uc-tape-bottom { bottom: 28%; transform: rotate(3deg); }
-  .uc-tape-mid { position: absolute; left: -5%; width: 110%; height: 60px; top: 50%; transform: translateY(-50%) rotate(-1.5deg); background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 20px, #d4a847 20px, #d4a847 40px); opacity: 0.9; box-shadow: 0 4px 30px rgba(0,0,0,0.6); z-index: 2; }
-  .uc-content { position: relative; z-index: 3; text-align: center; padding: 20px; }
-  .uc-icon { font-size: 48px; margin-bottom: 16px; filter: drop-shadow(0 0 20px rgba(212,168,71,0.3)); }
-  .uc-title { font-family: 'Oswald', sans-serif; font-size: clamp(28px, 5vw, 48px); font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.8); margin-bottom: 12px; }
-  .uc-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 3px; color: rgba(212,168,71,0.7); text-transform: uppercase; text-shadow: 0 1px 10px rgba(0,0,0,0.8); margin-bottom: 24px; }
-  .uc-desc { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; text-shadow: 0 1px 8px rgba(0,0,0,0.8); margin-bottom: 28px; }
-  .uc-back { display: inline-block; padding: 10px 24px; background: rgba(212,168,71,0.15); border: 1px solid rgba(212,168,71,0.4); font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--amber, #d4a847); text-decoration: none; transition: all 0.3s ease; }
-  .uc-back:hover { background: rgba(212,168,71,0.25); border-color: rgba(212,168,71,0.6); color: #fff; transform: translateY(-2px); }
 
-  body.construction-mode header,
-  body.construction-mode .form-section,
-  body.construction-mode .info-block,
-  body.construction-mode footer { filter: blur(6px) brightness(0.4); pointer-events: none; user-select: none; }
 </style>
 </head>
-<body class="construction-mode">
+<body>
 
 <nav class="site-nav">
   <a href="index.html">Home</a>
@@ -137,22 +125,6 @@
   <a href="squad.html" class="active">Squads</a>
   <a href="game.html">&#9734;</a>
 </nav>
-
-<!-- UNDER CONSTRUCTION OVERLAY -->
-<div class="uc-overlay">
-  <div class="uc-tape-top"></div>
-  <div class="uc-tape-mid"></div>
-  <div class="uc-tape-bottom"></div>
-  <div class="uc-content">
-    <div class="uc-icon">&#9888;</div>
-    <div class="uc-title">Under Construction</div>
-    <div class="uc-sub">Squad Registration</div>
-    <p class="uc-desc">This feature is currently being built. Squad registration will be available soon &mdash; check back later or watch the Discord for announcements.</p>
-    <a class="uc-back" href="index.html">&larr; Back to Home</a>
-  </div>
-</div>
-
-
 
 <header>
   <div class="server-tag">ECHOES OF HELL</div>
