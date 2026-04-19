@@ -27,10 +27,11 @@
   .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 32px; height: 48px; }
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: flex-start; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
   .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
   .site-nav a:hover { color: var(--text); }
   .site-nav a.active { color: var(--red); border-bottom-color: var(--red); }
+  .site-nav::-webkit-scrollbar { display: none; }
   .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
 
   .logo-top { display: block; margin: 0 auto 20px; width: 180px; height: auto; animation: logoFlicker 4s infinite; }
@@ -63,7 +64,8 @@
     .site-nav { gap: 4px 12px !important; padding: 6px 12px !important; height: auto !important; min-height: 48px; flex-wrap: wrap; }
     .site-nav a { font-size: 11px !important; letter-spacing: 1px !important; padding: 8px 0 !important; }
     .site-nav { gap: 20px; padding: 0 16px; }
-    .site-nav .nav-logo { margin-right: 8px; }
+    .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav .nav-logo { margin-right: 8px; }
     .content { padding: 70px 16px 40px; }
   }
 </style>
@@ -81,7 +83,7 @@
   <a href="team.html">Meet the Team</a>
   <a href="faq.html" class="active">FAQ</a>
   <a href="vietnam.html">Vietnam</a>
-  <a href="coming-soon.html">Coming Soon</a>
+  <a href="coming-soon.html">Takistan</a>
   <a href="squad.html">Squads</a>
   <a href="mods.html">Mods</a>
   <a href="game.html">&#9734;</a>

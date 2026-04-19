@@ -31,10 +31,11 @@
   .vignette { position: fixed; inset: 0; z-index: 50; pointer-events: none; box-shadow: inset 0 0 200px 60px rgba(0,0,0,0.7); }
 
   /* Nav */
-  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 32px; height: 48px; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: flex-start; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; animation: fadeIn 1s ease 0.2s both; }
   .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
   .site-nav a:hover { color: var(--text); }
   .site-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+  .site-nav::-webkit-scrollbar { display: none; }
   .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
 
   /* Hero */
@@ -110,7 +111,7 @@
   <a href="team.html">Meet the Team</a>
   <a href="faq.html">FAQ</a>
   <a href="vietnam.html">Vietnam</a>
-  <a href="coming-soon.html" class="active">Coming Soon</a>
+  <a href="coming-soon.html" class="active">Takistan</a>
   <a href="squad.html">Squads</a>
   <a href="mods.html">Mods</a>
   <a href="game.html">&#9734;</a>
