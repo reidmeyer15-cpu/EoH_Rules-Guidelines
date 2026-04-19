@@ -31,11 +31,13 @@
   .vignette { position: fixed; inset: 0; z-index: 50; pointer-events: none; box-shadow: inset 0 0 200px 60px rgba(0,0,0,0.7); }
 
   /* Nav */
-  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: flex-start; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; animation: fadeIn 1s ease 0.2s both; }
-  .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  
+.site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
   .site-nav a:hover { color: var(--text); }
   .site-nav a.active { color: var(--red); border-bottom-color: var(--red); }
-  .site-nav::-webkit-scrollbar { display: none; }
+  
   .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
 
   /* Hero */
@@ -115,12 +117,12 @@
   footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(192,192,200,0.1); }
 
   @media (max-width: 600px) {
-    .site-nav { gap: 4px 12px !important; padding: 6px 12px !important; height: auto !important; min-height: 48px; flex-wrap: wrap; }
-    .site-nav a { font-size: 11px !important; letter-spacing: 1px !important; padding: 8px 0 !important; }
+    
+    
     .slideshow { aspect-ratio: 4/3; }
     .server-grid { grid-template-columns: 1fr; }
     .map-grid { grid-template-columns: 1fr; }
-    .site-nav { gap: 20px; padding: 0 16px; }
+    
   }
 </style>
 </head>

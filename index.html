@@ -29,11 +29,13 @@
   @keyframes desertShimmer { 0%, 100% { opacity: 0.03; } 50% { opacity: 0.08; } }
 
   /* NAV */
-  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: flex-start; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; animation: fadeIn 1s ease 0.2s both; }
-  .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  
+.site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
   .site-nav a:hover { color: var(--text); }
   .site-nav a.active { color: var(--red); border-bottom-color: var(--red); }
-  .site-nav::-webkit-scrollbar { display: none; }
+  
   .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
 
   /* SPLIT HERO */
@@ -130,14 +132,11 @@
     .split-hero:hover .split-side:hover { flex: 1; }
   }
   @media (max-width: 600px) {
-    .site-nav { gap: 4px 12px !important; padding: 6px 12px !important; height: auto !important; min-height: 48px; flex-wrap: wrap; }
-    .site-nav a { font-size: 11px !important; letter-spacing: 1px !important; padding: 8px 0 !important; }
+    
+    
     .hero-logo { width: 160px; }
     .discord-cta { padding: 12px 24px; font-size: 13px; }
     .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .site-nav { gap: 20px; padding: 0 16px; }
-    .site-nav::-webkit-scrollbar { display: none; }
-  .site-nav .nav-logo { margin-right: 8px; }
     .how-to-join { padding: 0 16px; }
     .side-title { letter-spacing: 3px; }
   }
