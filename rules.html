@@ -62,16 +62,16 @@
   .charge-card { background: rgba(10,10,10,0.7); border: 1px solid var(--line); border-left-width: 3px; border-radius: 2px; padding: 16px 20px; margin-bottom: 8px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .charge-card:hover { background: rgba(10,10,10,0.8); }
   .charge-card.expanded { background: rgba(10,10,10,0.88); }
-  .charge-card[data-severity="perm"] { border-left-color: var(--perm); }
-  .charge-card[data-severity="weekban"] { border-left-color: var(--weekban); }
-  .charge-card[data-severity="dayban"] { border-left-color: var(--dayban); }
-  .charge-card[data-severity="lastwarn"] { border-left-color: var(--lastwarn); }
-  .charge-card[data-severity="warn"] { border-left-color: var(--warn); }
-  .charge-card.expanded[data-severity="perm"], .charge-card:hover[data-severity="perm"] { border-color: var(--perm); border-left-color: var(--perm); box-shadow: 0 0 12px rgba(255,42,42,0.3); }
-  .charge-card.expanded[data-severity="weekban"], .charge-card:hover[data-severity="weekban"] { border-color: var(--weekban); border-left-color: var(--weekban); box-shadow: 0 0 12px rgba(224,90,42,0.25); }
-  .charge-card.expanded[data-severity="dayban"], .charge-card:hover[data-severity="dayban"] { border-color: var(--dayban); border-left-color: var(--dayban); box-shadow: 0 0 12px rgba(232,160,18,0.2); }
-  .charge-card.expanded[data-severity="lastwarn"], .charge-card:hover[data-severity="lastwarn"] { border-color: var(--lastwarn); border-left-color: var(--lastwarn); }
-  .charge-card.expanded[data-severity="warn"], .charge-card:hover[data-severity="warn"] { border-color: var(--warn); border-left-color: var(--warn); }
+  .staff-unlocked .charge-card[data-severity="perm"] { border-left-color: var(--perm); }
+  .staff-unlocked .charge-card[data-severity="weekban"] { border-left-color: var(--weekban); }
+  .staff-unlocked .charge-card[data-severity="dayban"] { border-left-color: var(--dayban); }
+  .staff-unlocked .charge-card[data-severity="lastwarn"] { border-left-color: var(--lastwarn); }
+  .staff-unlocked .charge-card[data-severity="warn"] { border-left-color: var(--warn); }
+  .staff-unlocked .charge-card.expanded[data-severity="perm"], .staff-unlocked .charge-card:hover[data-severity="perm"] { border-color: var(--perm); border-left-color: var(--perm); box-shadow: 0 0 12px rgba(255,42,42,0.3); }
+  .staff-unlocked .charge-card.expanded[data-severity="weekban"], .staff-unlocked .charge-card:hover[data-severity="weekban"] { border-color: var(--weekban); border-left-color: var(--weekban); box-shadow: 0 0 12px rgba(224,90,42,0.25); }
+  .staff-unlocked .charge-card.expanded[data-severity="dayban"], .staff-unlocked .charge-card:hover[data-severity="dayban"] { border-color: var(--dayban); border-left-color: var(--dayban); box-shadow: 0 0 12px rgba(232,160,18,0.2); }
+  .staff-unlocked .charge-card.expanded[data-severity="lastwarn"], .staff-unlocked .charge-card:hover[data-severity="lastwarn"] { border-color: var(--lastwarn); border-left-color: var(--lastwarn); }
+  .staff-unlocked .charge-card.expanded[data-severity="warn"], .staff-unlocked .charge-card:hover[data-severity="warn"] { border-color: var(--warn); border-left-color: var(--warn); }
 
   .charge-top { display: flex; justify-content: space-between; align-items: center; }
   .charge-label { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -88,16 +88,16 @@
   .charge-classification { display: inline-block; border-radius: 2px; padding: 5px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
   .min-note { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(232,228,220,0.25); margin-left: 8px; letter-spacing: 0.3px; }
 
-  [data-severity="perm"] .charge-section, [data-severity="perm"] .charge-classification { color: var(--perm); }
-  [data-severity="perm"] .charge-classification { background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.25); }
-  [data-severity="weekban"] .charge-section, [data-severity="weekban"] .charge-classification { color: var(--weekban); }
-  [data-severity="weekban"] .charge-classification { background: rgba(224,90,42,0.08); border: 1px solid rgba(224,90,42,0.25); }
-  [data-severity="dayban"] .charge-section, [data-severity="dayban"] .charge-classification { color: var(--dayban); }
-  [data-severity="dayban"] .charge-classification { background: rgba(232,160,18,0.08); border: 1px solid rgba(232,160,18,0.25); }
-  [data-severity="lastwarn"] .charge-section, [data-severity="lastwarn"] .charge-classification { color: var(--lastwarn); }
-  [data-severity="lastwarn"] .charge-classification { background: rgba(196,162,67,0.08); border: 1px solid rgba(196,162,67,0.25); }
-  [data-severity="warn"] .charge-section, [data-severity="warn"] .charge-classification { color: var(--warn); }
-  [data-severity="warn"] .charge-classification { background: rgba(122,138,110,0.08); border: 1px solid rgba(122,138,110,0.25); }
+  .staff-unlocked [data-severity="perm"] .charge-section, .staff-unlocked [data-severity="perm"] .charge-classification { color: var(--perm); }
+  .staff-unlocked [data-severity="perm"] .charge-classification { background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.25); }
+  .staff-unlocked [data-severity="weekban"] .charge-section, .staff-unlocked [data-severity="weekban"] .charge-classification { color: var(--weekban); }
+  .staff-unlocked [data-severity="weekban"] .charge-classification { background: rgba(224,90,42,0.08); border: 1px solid rgba(224,90,42,0.25); }
+  .staff-unlocked [data-severity="dayban"] .charge-section, .staff-unlocked [data-severity="dayban"] .charge-classification { color: var(--dayban); }
+  .staff-unlocked [data-severity="dayban"] .charge-classification { background: rgba(232,160,18,0.08); border: 1px solid rgba(232,160,18,0.25); }
+  .staff-unlocked [data-severity="lastwarn"] .charge-section, .staff-unlocked [data-severity="lastwarn"] .charge-classification { color: var(--lastwarn); }
+  .staff-unlocked [data-severity="lastwarn"] .charge-classification { background: rgba(196,162,67,0.08); border: 1px solid rgba(196,162,67,0.25); }
+  .staff-unlocked [data-severity="warn"] .charge-section, .staff-unlocked [data-severity="warn"] .charge-classification { color: var(--warn); }
+  .staff-unlocked [data-severity="warn"] .charge-classification { background: rgba(122,138,110,0.08); border: 1px solid rgba(122,138,110,0.25); }
 
   .sentencing-table { border: 1px solid var(--line); border-radius: 2px; overflow: hidden; background: rgba(10,10,10,0.7); backdrop-filter: blur(6px); }
   .sentencing-header { display: grid; grid-template-columns: 180px 1fr; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 16px; }
@@ -113,6 +113,37 @@
   .agg-item { display: flex; gap: 10px; align-items: baseline; padding: 5px 0; margin-left: 8px; }
   .agg-item .bullet { color: var(--red); font-size: 8px; flex-shrink: 0; margin-top: 4px; }
   .agg-item span:last-child { font-size: 14px; color: rgba(232,228,220,0.6); }
+
+  /* Staff-only elements hidden until unlocked */
+  .staff-only { display: none !important; }
+  .staff-unlocked .staff-only { display: block !important; }
+  .staff-unlocked .staff-only.inline { display: inline-block !important; }
+
+  /* Staff login modal */
+  .staff-modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .staff-modal-overlay.open { opacity: 1; pointer-events: all; }
+  .staff-modal { background: #0d0d0d; border: 1px solid rgba(255,255,255,0.08); border-top: 2px solid var(--red); border-radius: 2px; padding: 32px 36px; width: 340px; max-width: 90vw; }
+  .staff-modal-title { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 3px; color: var(--red); text-transform: uppercase; margin-bottom: 6px; }
+  .staff-modal-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(232,228,220,0.3); letter-spacing: 0.5px; margin-bottom: 24px; }
+  .staff-modal input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); letter-spacing: 1px; outline: none; transition: border-color 0.2s; margin-bottom: 14px; }
+  .staff-modal input:focus { border-color: rgba(255,42,42,0.4); }
+  .staff-modal input.error { border-color: var(--red); animation: shake 0.3s ease; }
+  .staff-modal-btn { width: 100%; background: rgba(255,42,42,0.12); border: 1px solid rgba(255,42,42,0.3); border-radius: 2px; padding: 10px; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--red); text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .staff-modal-btn:hover { background: rgba(255,42,42,0.2); border-color: var(--red); }
+  .staff-modal-close { display: block; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(232,228,220,0.2); background: none; border: none; cursor: pointer; width: 100%; text-align: center; letter-spacing: 1px; transition: color 0.2s; }
+  .staff-modal-close:hover { color: rgba(232,228,220,0.5); }
+  .staff-modal-error { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.5px; margin-bottom: 10px; min-height: 16px; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+  /* Staff lock button in footer */
+  .staff-lock-btn { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(232,228,220,0.15); background: none; border: 1px solid rgba(255,255,255,0.05); border-radius: 2px; padding: 5px 12px; cursor: pointer; margin-top: 20px; transition: all 0.2s; text-transform: uppercase; }
+  .staff-lock-btn:hover { color: rgba(232,228,220,0.4); border-color: rgba(255,255,255,0.12); }
+  .staff-unlocked .staff-lock-btn { color: rgba(255,42,42,0.4); border-color: rgba(255,42,42,0.2); }
+  .staff-unlocked .staff-lock-btn:hover { color: var(--red); border-color: rgba(255,42,42,0.4); }
+
+  /* Staff badge in nav area */
+  .staff-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--red); background: rgba(255,42,42,0.1); border: 1px solid rgba(255,42,42,0.25); border-radius: 2px; padding: 2px 7px; margin-left: 8px; vertical-align: middle; display: none; }
+  .staff-unlocked .staff-badge { display: inline; }
 
   footer { text-align: center; padding: 40px 20px 60px; background: #000000; position: relative; z-index: 2; }
 
@@ -318,6 +349,7 @@
   <a href="vietnam.html">Vietnam</a>
   <a href="coming-soon.html">Coming Soon</a>
   <a href="squad.html">Squads</a>
+  <a href="mods.html">Mods</a>
   <a href="game.html">&#9734;</a>
 </nav>
 
@@ -334,27 +366,15 @@
 
 <div class="disclaimer fade-in">
   <div class="disc-title">Before You Read</div>
-  <p>The offenses listed below are <strong>examples</strong> &mdash; not an exhaustive list of every possible scenario. Every situation is different, and GMs use their judgment to determine the appropriate response. Something not listed here can still get you banned if a GM determines it warrants one.</p>
-  <p>The punishment levels shown are the <strong>most common minimum</strong> for each type of offense. <strong>The maximum for any offense can be a permanent ban</strong> at staff discretion. Being receptive and respectful when staff talks to you goes a long way. Being a dick about it makes it worse.</p>
-  <p>If you are banned, <strong>you are entitled to know why.</strong> Your ban reason may list the specific rule section — for example, "§ 0.1 Admin Discretion" or "§ 3.1 Mass Teamkilling" — but admins are not required to include the specific subsection. Some will, some won't. If the reason given isn't enough detail for you, you can request the admin's full note through the appeal process in Discord and staff will provide it.</p>
-  <p>Staff reserves the right to skip levels and go straight to a ban if the situation calls for it. If you believe your ban was unjust, you can submit an appeal through our <strong>appeal process in Discord</strong>. If you're reading this and thinking "how do I get around these?" &mdash; <strong>you're already the problem.</strong></p>
-</div>
-
-<div class="escalation-notice fade-in">
-  <p><strong>How Escalation Works:</strong> Every offense flows from least to greatest. If you're receptive when staff talks to you, you'll generally get the listed punishment. If you're confrontational, rude, or aggressive during the process, the punishment automatically bumps up one level. Repeat offenses also escalate. Don't make it worse for yourself.</p>
+  <p>The offenses listed below are <strong>examples</strong> &mdash; not an exhaustive list of every possible scenario. Every situation is different, and GMs use their judgment to determine the appropriate response. Something not listed here can still result in action if a GM determines it warrants one.</p>
+  <p>If you are banned, <strong>you are entitled to know why.</strong> Your ban reason may list the specific rule section — for example, "§ 0.1 Admin Discretion" or "§ 3.1 Mass Teamkilling" — but admins are not required to include the specific subsection. If the reason given isn't enough detail, you can request the admin's full note through the appeal process in Discord and staff will provide it.</p>
+  <p>If you believe your ban was unjust, you can submit an appeal through our <strong>appeal process in Discord</strong>. If you're reading this and thinking "how do I get around these?" &mdash; <strong>you're already the problem.</strong></p>
 </div>
 
 <div class="search-bar">
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="text" class="search-input" id="ruleSearch" placeholder="Search rules..." autocomplete="off">
-  </div>
-  <div class="filter-chips" id="filterChips">
-    <button class="filter-chip" data-severity="perm" style="--chip-color:var(--perm);--chip-bg:rgba(255,42,42,0.08);">Perm Ban</button>
-    <button class="filter-chip" data-severity="weekban" style="--chip-color:var(--weekban);--chip-bg:rgba(224,90,42,0.08);">Week Ban</button>
-    <button class="filter-chip" data-severity="dayban" style="--chip-color:var(--dayban);--chip-bg:rgba(232,160,18,0.08);">Day Ban</button>
-    <button class="filter-chip" data-severity="lastwarn" style="--chip-color:var(--lastwarn);--chip-bg:rgba(196,162,67,0.08);">Final Strike</button>
-    <button class="filter-chip" data-severity="warn" style="--chip-color:var(--warn);--chip-bg:rgba(122,138,110,0.08);">Warning</button>
   </div>
   <div class="search-count" id="searchCount"></div>
 </div>
@@ -366,8 +386,20 @@
   <div class="footer-bar"></div>
   <p class="version">ECHOES OF HELL &mdash; SERVER RULES v1.0</p>
   <p class="effective">Effective immediately. Not knowing the rules doesn't get you off the hook.</p>
+  <button class="staff-lock-btn" id="staffLockBtn">&#9632; Staff Access</button>
   <p style="margin-top:12px"><a href="https://discord.gg/echoes-of-hell">discord.gg/echoes-of-hell</a></p>
 </footer>
+
+<div class="staff-modal-overlay" id="staffModal">
+  <div class="staff-modal">
+    <div class="staff-modal-title">Staff Access</div>
+    <div class="staff-modal-sub">EoH Administration only</div>
+    <input type="password" id="staffPassInput" placeholder="Enter password" autocomplete="off">
+    <div class="staff-modal-error" id="staffModalError"></div>
+    <button class="staff-modal-btn" id="staffPassSubmit">Authenticate</button>
+    <button class="staff-modal-close" id="staffModalClose">Cancel</button>
+  </div>
+</div>
 
 <script>
 var bgImages = document.querySelectorAll('.bg-image');
@@ -463,17 +495,13 @@ var AGGRAVATING = [
 
 var sevColor = { perm:"var(--perm)", weekban:"var(--weekban)", dayban:"var(--dayban)", lastwarn:"var(--lastwarn)", warn:"var(--warn)" };
 
+
 var main = document.getElementById('mainContent');
 var dotNav = document.getElementById('dotNav');
 
-var sentBlock = document.createElement('div');
-sentBlock.className = 'section-block';
-sentBlock.innerHTML = '<div class="section-header fade-in"><h2>PUNISHMENT LADDER</h2><p class="source">Flows from least to greatest. These are typical minimums — the max for anything can be a permanent ban.</p></div><div class="sentencing-table fade-in" style="margin-top:16px"><div class="sentencing-header"><span>Level (Minimum)</span><span>What It Means</span></div>' + SENTENCING.map(function(r) { return '<div class="sentencing-row"><span class="label" style="color:' + sevColor[r.severity] + '">' + r.classification + '</span><span class="sentence">' + r.sentence + '</span></div>'; }).join('') + '</div>';
-main.appendChild(sentBlock);
-
 var aggBlock = document.createElement('div');
 aggBlock.className = 'section-block fade-in';
-aggBlock.innerHTML = '<h3 class="agg-title">What Makes It Worse</h3><p class="agg-intro">Any of these will bump your punishment up one or more levels:</p>' + AGGRAVATING.map(function(f) { return '<div class="agg-item"><span class="bullet">&#9632;</span><span>' + f + '</span></div>'; }).join('');
+aggBlock.innerHTML = '<h3 class="agg-title">What Makes It Worse</h3><p class="agg-intro">Any of these will escalate your punishment — sometimes significantly:</p>' + AGGRAVATING.map(function(f) { return '<div class="agg-item"><span class="bullet">&#9632;</span><span>' + f + '</span></div>'; }).join('');
 main.appendChild(aggBlock);
 
 SECTIONS.forEach(function(section) {
@@ -498,16 +526,19 @@ SECTIONS.forEach(function(section) {
     if (charge.examples && charge.examples.length > 0) {
       exHtml = '<ul class="examples">' + charge.examples.map(function(e) { return '<li>' + e + '</li>'; }).join('') + '</ul>';
     }
-    var minNote = charge.severity !== 'perm' ? '<span class="min-note">TYPICAL MIN — MAX CAN BE PERM BAN</span>' : '';
+    var classHtml = '<span class="charge-classification staff-only inline">' + charge.classification + '</span>';
 
-    card.innerHTML = '<div class="charge-top"><div class="charge-label"><span class="charge-section">' + charge.section + '</span><span class="charge-name">' + charge.name + '</span></div><span class="charge-arrow">&#9662;</span></div><div class="charge-body"><p>' + charge.body + '</p>' + exHtml + '<span class="charge-classification">' + charge.classification + '</span>' + minNote + '</div>';
+    card.innerHTML = '<div class="charge-top"><div class="charge-label"><span class="charge-section">' + charge.section + '</span><span class="charge-name">' + charge.name + '</span></div><span class="charge-arrow">&#9662;</span></div><div class="charge-body"><p>' + charge.body + '</p>' + exHtml + classHtml + '</div>';
     card.addEventListener('click', function() { card.classList.toggle('expanded'); });
     wrapper.appendChild(card);
   });
   main.appendChild(wrapper);
 });
 
-
+var sentBlock = document.createElement('div');
+sentBlock.className = 'section-block staff-only';
+sentBlock.innerHTML = '<div class="section-header fade-in"><h2>PUNISHMENT LADDER</h2><p class="source">Flows from least to greatest. Max for anything can be a permanent ban at staff discretion.</p></div><div class="sentencing-table fade-in" style="margin-top:16px"><div class="sentencing-header"><span>Level</span><span>What It Means</span></div>' + SENTENCING.map(function(r) { return '<div class="sentencing-row"><span class="label" style="color:' + sevColor[r.severity] + '">' + r.classification + '</span><span class="sentence">' + r.sentence + '</span></div>'; }).join('') + '</div>';
+main.appendChild(sentBlock);
 
 document.querySelectorAll('.fade-in').forEach(function(el) {
   new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }).observe(el);
@@ -520,21 +551,19 @@ document.querySelectorAll('.section-block').forEach(function(el) {
   }); }, { threshold: 0.3 }).observe(el);
 });
 
-// Search & filter logic
+// Search logic
 (function() {
   var searchInput = document.getElementById('ruleSearch');
   var searchCount = document.getElementById('searchCount');
-  var chips = document.querySelectorAll('.filter-chip');
-  var activeSeverities = [];
 
   function runFilter() {
     var query = searchInput.value.toLowerCase().trim();
-    var hasFilter = query.length > 0 || activeSeverities.length > 0;
+    var hasFilter = query.length > 0;
     var visibleCount = 0;
     var totalCount = 0;
 
     document.querySelectorAll('.section-block').forEach(function(block) {
-      if (!block.id || block.id === '') { 
+      if (!block.id || block.id === '') {
         block.classList.toggle('hidden', hasFilter);
         return;
       }
@@ -542,11 +571,7 @@ document.querySelectorAll('.section-block').forEach(function(el) {
       var sectionVisible = false;
       cards.forEach(function(card) {
         totalCount++;
-        var text = card.textContent.toLowerCase();
-        var sev = card.dataset.severity;
-        var matchText = query.length === 0 || text.indexOf(query) !== -1;
-        var matchSev = activeSeverities.length === 0 || activeSeverities.indexOf(sev) !== -1;
-        var show = matchText && matchSev;
+        var show = query.length === 0 || card.textContent.toLowerCase().indexOf(query) !== -1;
         card.classList.toggle('hidden', !show);
         if (show) { sectionVisible = true; visibleCount++; }
       });
@@ -562,16 +587,69 @@ document.querySelectorAll('.section-block').forEach(function(el) {
   }
 
   searchInput.addEventListener('input', runFilter);
+})();
 
-  chips.forEach(function(chip) {
-    chip.addEventListener('click', function() {
-      var sev = chip.dataset.severity;
-      var idx = activeSeverities.indexOf(sev);
-      if (idx === -1) { activeSeverities.push(sev); chip.classList.add('active'); }
-      else { activeSeverities.splice(idx, 1); chip.classList.remove('active'); }
-      runFilter();
-    });
+// Staff access
+(function() {
+  var _k = ['EoH','Admin','istrator'].join('');
+  var modal = document.getElementById('staffModal');
+  var lockBtn = document.getElementById('staffLockBtn');
+  var passInput = document.getElementById('staffPassInput');
+  var submitBtn = document.getElementById('staffPassSubmit');
+  var closeBtn = document.getElementById('staffModalClose');
+  var errorEl = document.getElementById('staffModalError');
+
+  function unlock() {
+    document.body.classList.add('staff-unlocked');
+    sessionStorage.setItem('eoh_staff', '1');
+    lockBtn.textContent = '\u25A0 Staff: Unlocked';
+    closeModal();
+  }
+
+  function lock() {
+    document.body.classList.remove('staff-unlocked');
+    sessionStorage.removeItem('eoh_staff');
+    lockBtn.textContent = '\u25A0 Staff Access';
+  }
+
+  function openModal() {
+    passInput.value = '';
+    errorEl.textContent = '';
+    passInput.classList.remove('error');
+    modal.classList.add('open');
+    setTimeout(function() { passInput.focus(); }, 50);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+  }
+
+  function attempt() {
+    if (passInput.value === _k) {
+      unlock();
+    } else {
+      errorEl.textContent = 'Incorrect password.';
+      passInput.classList.add('error');
+      setTimeout(function() { passInput.classList.remove('error'); }, 400);
+      passInput.value = '';
+      passInput.focus();
+    }
+  }
+
+  lockBtn.addEventListener('click', function() {
+    if (document.body.classList.contains('staff-unlocked')) { lock(); }
+    else { openModal(); }
   });
+
+  submitBtn.addEventListener('click', attempt);
+  passInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') attempt(); });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+
+  if (sessionStorage.getItem('eoh_staff') === '1') {
+    document.body.classList.add('staff-unlocked');
+    lockBtn.textContent = '\u25A0 Staff: Unlocked';
+  }
 })();
 
 </script>
