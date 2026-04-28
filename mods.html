@@ -45,13 +45,8 @@
   .mod-card { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
   .mod-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .mod-thumb-link { display: block; }
-  .mod-thumb { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #161616 0%, #0d0d0d 100%); border-bottom: 1px solid rgba(255,42,42,0.15); display: flex; align-items: center; justify-content: center; position: relative; transition: filter 0.3s ease; overflow: hidden; }
-  .mod-thumb::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,42,42,0.08) 0%, transparent 60%); }
-  .mod-thumb::after { font-family: "Oswald", sans-serif; font-size: 64px; font-weight: 300; color: rgba(255,42,42,0.35); position: relative; z-index: 1; letter-spacing: 4px; text-transform: uppercase; }
-  .mod-thumb[data-tag="systems"]::after { content: "99"; font-size: 80px; }
-  .mod-thumb[data-tag="weapons"]::after { content: "²0"; font-size: 80px; }
-  .mod-thumb[data-tag="vehicles"]::after { content: "EoH"; }
-  .mod-card:hover .mod-thumb { filter: brightness(1.1); }
+  .mod-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; background-color: #0d0d0d; transition: filter 0.3s ease; }
+  .mod-card:hover .mod-thumb { filter: brightness(1.15); }
   .mod-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
   .mod-meta-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .mod-tag { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,42,42,0.6); background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.15); padding: 3px 8px; border-radius: 1px; }
@@ -107,9 +102,7 @@
   <p class="mods-intro fade-in">All mods below are built in-house by the EoH team and run on our servers. Subscribe on the Arma Reforger Workshop &mdash; they download automatically when you join.</p>
   <div class="mods-grid">
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/691B6ED44C20EA11-EoHVehicleLimiterCore" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="systems"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/691B6ED44C20EA11-EoHVehicleLimiterCore" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/2117/ae0671d5abedd6aa8fbbf14a4871a2190d13337db795e92a30e5b380d5da/54615.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Systems</span>
@@ -126,9 +119,7 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/69234CA41D6B9668-EoHVehicleLimiterVietnam" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="systems"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/69234CA41D6B9668-EoHVehicleLimiterVietnam" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/2d7f/e088dbdac310aad98f4f864981b9aa3e2cb88a38ae9214080087a0131546/99966.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Systems</span>
@@ -145,9 +136,7 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/691559285B25BA62-EoHGWOTVehicleLimiter" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="systems"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/691559285B25BA62-EoHGWOTVehicleLimiter" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/b898/c2e0537a47d159a117672e6d9191f2bae093c6f1633bbd86059a5cd43a5e/112841.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Systems</span>
@@ -164,16 +153,14 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/689037A21CDD324F-EoHNapalm" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="weapons"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/689037A21CDD324F-EoHNapalm" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/f798/09400e055976c9e6cf921ad4dad37ffba24e565e6a7400fd4ab6af0bb28a/121023.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Weapons</span>
           <span class="mod-rating">&#9733; 100%</span>
         </div>
         <h3 class="mod-name">EoH Napalm</h3>
-        <p class="mod-desc">Comprehensive napalm and incendiary warfare system. Realistic fire mechanics, terrain-aware flame spread, and GM-spawnable strike patterns. Our most downloaded mod.</p>
+        <p class="mod-desc">Comprehensive napalm and incendiary warfare system. Realistic fire mechanics, terrain-aware flame spread, and GM-spawnable strike patterns.</p>
         <div class="mod-stats">
           <span class="mod-stat">v1.0.36</span>
           <span class="mod-stat">55.49 MB</span>
@@ -183,9 +170,7 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/67160B8E19778D03-EOHHeliPack3" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="vehicles"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/67160B8E19778D03-EOHHeliPack3" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/2e40/80cab8055bafd1900e97004e6328313f1fba5c50916c23edb8b207d3a1c6/197512.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Vehicles</span>
@@ -202,9 +187,7 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/66E17220425377A5-EOHHeliPack2" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="vehicles"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/66E17220425377A5-EOHHeliPack2" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/dca6/d08d285305b542c653b41fcacfe2d5d08eaf915e56b2259f3344b6a555e8/184109.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Vehicles</span>
@@ -221,16 +204,14 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/6509272707765439-EOHHueyPack" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="vehicles"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/6509272707765439-EOHHueyPack" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/0aa5/c3308c740c9755c8a3afbbdc9e51985b86a3119ca248b9e37332d2947c89/380037.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Vehicles</span>
           <span class="mod-rating">&#9733; 100%</span>
         </div>
         <h3 class="mod-name">EOH Huey Pack</h3>
-        <p class="mod-desc">Full suite of Huey helicopters built from base game parts only — no external dependencies. Our most subscribed mod and the workhorse of all EoH servers.</p>
+        <p class="mod-desc">Full suite of Huey helicopters built from base game parts only — no external dependencies.</p>
         <div class="mod-stats">
           <span class="mod-stat">v2.0.46</span>
           <span class="mod-stat">72.45 MB</span>
@@ -240,9 +221,7 @@
       </div>
     </div>
     <div class="mod-card fade-in">
-      <a href="https://reforger.armaplatform.com/workshop/664D2A4D07DB68DE-EOHGuntrucks" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" data-tag="vehicles"></div>
-      </a>
+      <a href="https://reforger.armaplatform.com/workshop/664D2A4D07DB68DE-EOHGuntrucks" target="_blank" rel="noopener" class="mod-thumb-link"><div class="mod-thumb" style="background-image:url(https://ar-gcp-cdn.bistudio.com/image/7d72/90ca8bc30666c18056928f022e3b3d3cdae0261556b1991b19d7cc9f6828/118103.jpg);"></div></a>
       <div class="mod-body">
         <div class="mod-meta-top">
           <span class="mod-tag">Vehicles</span>
