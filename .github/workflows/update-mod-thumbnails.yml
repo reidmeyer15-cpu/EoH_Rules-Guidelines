@@ -1,0 +1,38 @@
+name: Update Mod Thumbnails
+
+# Runs daily and on manual trigger. Scrapes the og:image URL from each EoH
+# workshop page and updates mods.html if any thumbnail has changed.
+on:
+  schedule:
+    - cron: '0 7 * * *'   # every day at 07:00 UTC (~ 2-3 AM Eastern)
+  workflow_dispatch:       # allow manual run from the Actions tab
+
+permissions:
+  contents: write          # needs to commit changes back
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Scrape workshop pages and update mods.html
+        run: python scripts/update_thumbnails.py
+
+      - name: Commit changes if any
+        run: |
+          if [[ -n "$(git status --porcelain mods.html)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add mods.html
+            git commit -m "Auto-update mod thumbnails from workshop"
+            git push
+          else
+            echo "No thumbnail changes."
+          fi
