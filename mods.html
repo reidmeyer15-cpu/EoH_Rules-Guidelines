@@ -45,7 +45,12 @@
   .mod-card { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
   .mod-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .mod-thumb-link { display: block; }
-  .mod-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; background-color: #111; transition: filter 0.3s ease; }
+  .mod-thumb { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #161616 0%, #0d0d0d 100%); border-bottom: 1px solid rgba(255,42,42,0.15); display: flex; align-items: center; justify-content: center; position: relative; transition: filter 0.3s ease; overflow: hidden; }
+  .mod-thumb::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,42,42,0.08) 0%, transparent 60%); }
+  .mod-thumb::after { font-family: "Oswald", sans-serif; font-size: 64px; font-weight: 300; color: rgba(255,42,42,0.35); position: relative; z-index: 1; letter-spacing: 4px; text-transform: uppercase; }
+  .mod-thumb[data-tag="systems"]::after { content: "99"; font-size: 80px; }
+  .mod-thumb[data-tag="weapons"]::after { content: "²0"; font-size: 80px; }
+  .mod-thumb[data-tag="vehicles"]::after { content: "EoH"; }
   .mod-card:hover .mod-thumb { filter: brightness(1.1); }
   .mod-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
   .mod-meta-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
@@ -67,6 +72,13 @@
     
     main { padding: 20px 16px 80px; }
     .mods-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .site-nav { gap: 14px; padding: 0 12px; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-size: 11px; letter-spacing: 1.5px; flex-shrink: 0; }
+    .site-nav .nav-logo { flex-shrink: 0; margin-right: 8px; }
   }
 </style>
 </head>
@@ -96,7 +108,7 @@
   <div class="mods-grid">
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/691B6ED44C20EA11-EoHVehicleLimiterCore" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="systems"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -115,7 +127,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/69234CA41D6B9668-EoHVehicleLimiterVietnam" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="systems"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -134,7 +146,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/691559285B25BA62-EoHGWOTVehicleLimiter" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="systems"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -153,7 +165,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/689037A21CDD324F-EoHNapalm" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="weapons"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -172,7 +184,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/67160B8E19778D03-EOHHeliPack3" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="vehicles"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -191,7 +203,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/66E17220425377A5-EOHHeliPack2" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="vehicles"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -210,7 +222,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/6509272707765439-EOHHueyPack" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="vehicles"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
@@ -229,7 +241,7 @@
     </div>
     <div class="mod-card fade-in">
       <a href="https://reforger.armaplatform.com/workshop/664D2A4D07DB68DE-EOHGuntrucks" target="_blank" rel="noopener" class="mod-thumb-link">
-        <div class="mod-thumb" style="background-image:url( + m["thumb"] + )"></div>
+        <div class="mod-thumb" data-tag="vehicles"></div>
       </a>
       <div class="mod-body">
         <div class="mod-meta-top">
