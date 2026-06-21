@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echoes of Hell — WW2 Normandy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root { --bg: #0a0a0a; --text: #c0c0c8; --red: #ff2a2a; --dim: rgba(192,192,200,0.5); --olive: #8a9a5b; --olive-dark: #5a6b3a; }
+  body { background: var(--bg); color: var(--text); font-family: 'PT Serif', Georgia, serif; font-size: 23px; -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(138,154,91,0.3); color: #fff; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(138,154,91,0.15); border-radius: 3px; }
+  body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
+
+  @keyframes olivePulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lineGrow { from { width: 0; } to { width: 80px; } }
+  @keyframes drift { 0% { transform: translateX(-5%); } 100% { transform: translateX(5%); } }
+  @keyframes glowOlive { 0%, 100% { box-shadow: 0 0 20px rgba(138,154,91,0.2), 0 0 60px rgba(138,154,91,0.05); } 50% { box-shadow: 0 0 30px rgba(138,154,91,0.35), 0 0 80px rgba(138,154,91,0.1); } }
+
+  .bg-layer { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2; overflow: hidden; }
+  .bg-layer .bg-image { position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; background-size: cover; background-position: center; filter: grayscale(40%) brightness(0.18) contrast(1.1); animation: drift 30s ease-in-out infinite alternate; }
+  .bg-layer::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 50%, var(--bg) 100%); z-index: 1; }
+  .vignette { position: fixed; inset: 0; z-index: 50; pointer-events: none; box-shadow: inset 0 0 200px 60px rgba(0,0,0,0.7); }
+
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 20px; height: 48px; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  .site-nav a:hover { color: var(--text); }
+  .site-nav a.active { color: var(--olive); border-bottom-color: var(--olive); }
+  .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
+
+  .hero { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 24px 40px; min-height: 80vh; }
+  .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(48px, 8vw, 96px); font-weight: 700; letter-spacing: 8px; color: rgba(232,228,220,0.92); text-transform: uppercase; animation: fadeUp 1.2s ease 0.4s both; }
+  .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 5px; color: rgba(138,154,91,0.6); margin-top: 28px; animation: olivePulse 3s ease infinite, fadeUp 1s ease 0.8s both; }
+  .hero-bar { width: 0; height: 2px; background: var(--olive); margin: 24px auto; box-shadow: 0 0 12px rgba(138,154,91,0.4); animation: lineGrow 0.8s ease 1.2s both; }
+  .hero-desc { max-width: 560px; font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.45); animation: fadeUp 1s ease 1.4s both; }
+
+  .live-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 32px; padding: 14px 28px; background: rgba(138,154,91,0.08); border: 1px solid rgba(138,154,91,0.25); font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--olive); animation: fadeUp 1s ease 1.6s both, glowOlive 3s ease 2.6s infinite; }
+  .live-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #51cf66; box-shadow: 0 0 8px rgba(81,207,102,0.6); animation: olivePulse 2s ease infinite; }
+
+  .servers-section { position: relative; z-index: 2; max-width: 1200px; margin: 60px auto 0; padding: 0 24px; animation: fadeUp 1s ease 1.8s both; }
+  .servers-header { text-align: center; margin-bottom: 32px; }
+  .servers-line { display: inline-block; width: 60px; height: 1px; background: rgba(138,154,91,0.4); margin-bottom: 12px; }
+  .servers-header h2 { font-family: 'Oswald', sans-serif; font-size: 24px; letter-spacing: 6px; text-transform: uppercase; color: rgba(138,154,91,0.9); margin: 0; }
+  .servers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .server-card { background: rgba(20, 22, 18, 0.6); border: 1px solid rgba(138,154,91,0.18); border-left: 3px solid rgba(138,154,91,0.7); padding: 24px; }
+  .server-num { font-family: 'PT Serif', serif; font-size: 32px; color: rgba(138,154,91,0.8); font-weight: 700; margin-bottom: 8px; }
+  .server-name { font-family: 'Oswald', sans-serif; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,228,220,0.95); margin-bottom: 12px; }
+  .server-desc { font-family: 'PT Serif', serif; font-size: 14px; color: rgba(232,228,220,0.65); line-height: 1.6; margin: 0 0 12px; }
+  .server-tag { display: inline-block; padding: 4px 10px; font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; background: rgba(138,154,91,0.15); color: rgba(138,154,91,0.9); border: 1px solid rgba(138,154,91,0.3); }
+
+  .features { position: relative; z-index: 2; max-width: 800px; margin: 60px auto 0; padding: 0 24px; animation: fadeUp 1s ease 2s both; }
+  .features-title { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(138,154,91,0.6); text-align: center; margin-bottom: 28px; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .feature { padding: 16px 20px; background: rgba(10,10,10,0.7); border: 1px solid rgba(138,154,91,0.08); border-left: 3px solid rgba(138,154,91,0.25); backdrop-filter: blur(6px); transition: all 0.3s ease; }
+  .feature:hover { background: rgba(10,10,10,0.85); border-color: rgba(138,154,91,0.2); border-left-color: var(--olive); }
+  .feature-name { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1px; color: rgba(138,154,91,0.7); margin-bottom: 4px; }
+  .feature-desc { font-size: 12px; color: rgba(192,192,200,0.4); line-height: 1.5; }
+
+  .back-link { position: relative; z-index: 2; text-align: center; margin-top: 48px; padding-bottom: 40px; animation: fadeUp 1s ease 2.2s both; }
+  .back-link a { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.2); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+  .back-link a:hover { color: var(--dim); border-bottom-color: rgba(138,154,91,0.3); }
+
+  footer { position: relative; z-index: 2; text-align: center; padding: 20px; }
+  footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(192,192,200,0.1); }
+
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-image" style="background-image: url('images/img-23.png');"></div>
+</div>
+<div class="vignette"></div>
+
+<nav class="site-nav">
+  <img class="nav-logo" src="images/img-02.png" alt="EoH">
+  <a href="index.html">Home</a>
+  <a href="rules.html">Rules</a>
+  <a href="team.html">Meet the Team</a>
+  <a href="faq.html">FAQ</a>
+  <a href="vietnam.html">Vietnam</a>
+  <a href="coming-soon.html">Takistan</a>
+  <a href="ww2.html" class="active">WW2</a>
+  <a href="squad.html">Squads</a>
+  <a href="mods.html">Mods</a>
+  <a href="game.html">&#9734;</a>
+</nav>
+
+<div class="hero">
+  <h1 class="hero-title">Normandy</h1>
+  <div class="hero-tag">&#9670; WW2 &bull; NORMANDY &bull; PvE &#9670;</div>
+  <div class="hero-bar"></div>
+  <p class="hero-desc">
+    The European theater &mdash; live and running. Cooperative PvE across the Normandy countryside.
+    Period-correct weapons, vehicles, and equipment. Fight through hedgerows, villages, and farms
+    against a persistent AI enemy. <strong>2 servers live now.</strong>
+  </p>
+  <div class="live-badge">
+    <span class="dot"></span>
+    Live Now
+  </div>
+</div>
+
+<div class="servers-section">
+  <div class="servers-header">
+    <div class="servers-line"></div>
+    <h2>Our Servers</h2>
+  </div>
+  <div class="servers-grid">
+    <div class="server-card">
+      <div class="server-num">1</div>
+      <div class="server-name">WW2 Pub 1</div>
+      <div class="server-desc">Our primary Normandy server. Highest population, fastest-moving objectives. Drop in for cooperative ops across the European theater.</div>
+      <span class="server-tag">80 Slots &bull; PvE</span>
+    </div>
+    <div class="server-card">
+      <div class="server-num">2</div>
+      <div class="server-name">WW2 Pub 2</div>
+      <div class="server-desc">Secondary Normandy server. Lower headcount means more challenging engagements and tighter teamwork. Same ruleset, smaller scale.</div>
+      <span class="server-tag">64 Slots &bull; PvE</span>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="features-title">What to Expect</div>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-name">PvE Only</div>
+      <div class="feature-desc">Cooperative gameplay against AI forces across the Normandy theater.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Normandy</div>
+      <div class="feature-desc">Hedgerow country, villages, farms, and beach sectors of the European theater.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">WW2 Era</div>
+      <div class="feature-desc">Period-correct weapons, vehicles, and loadouts. M1 Garands, Thompsons, Shermans, and more.</div>
+    </div>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="index.html">&larr; Back to Home</a>
+</div>
+
+<footer><p class="version">ECHOES OF HELL &mdash; WW2</p></footer>
+
+</body>
+</html>

@@ -17,8 +17,8 @@
       "title": "SERVERS & GAMEPLAY",
       "questions": [
         {
-          "q": "What's the difference between Vietnam Pub 1, 2, and 3?",
-          "a": "All 3 servers have the same mod list. <strong>Server 1</strong> typically has the highest pop — the higher the player count, the more chaos and the faster matches complete. <strong>Server 2</strong> typically holds between 50–90 during the week and max pop on weekends. It hosts our more organized players and is more challenging due to the lower player count. <strong>Server 3</strong> is the <em>hardcore</em> server — low player count means less help, less CAS, and a much harder time rolling through objectives. Server 3 is also our event server where most events are held. Navigate to <strong>#role-selection</strong> in Discord to be notified for all events including PTSD mode and more."
+          "q": "What's the difference between Vietnam Pub 1, Pub 2, and Vietnam Warfare?",
+          "a": "<strong>Pub 1</strong> and <strong>Pub 2</strong> are our Legacy Vietnam servers — same mod list, same game mode. Pub 1 is typically the higher-pop server (more chaos, faster objectives, more forgiving overall). Pub 2 sits at 50–90 players on weekdays and fills up on weekends — more organized players, more challenging due to the lower headcount. <strong>Vietnam Warfare</strong> is our new PvE game mode in the same era — different mechanics and objectives than the Legacy Pubs. If you like Vietnam and want something different, give Warfare a try."
         },
         {
           "q": "Can I play as NVA / PVP?",
@@ -43,7 +43,7 @@
       "questions": [
         {
           "q": "What's the roadmap for EoH?",
-          "a": "EoH Vietnam is on a steady path to completion. Each day McLaggins and the Development team chip away at perfecting the map and its assets. The current plan is to finish the mission file, push more map updates, and hopefully be complete by mid 2026. The team is also full steam ahead with a <strong>Global War on Terror Takistan PvE server</strong>. Nothing is set in stone, however we anticipate near completion within the next 30–60 days. When Vietnam nears completion, Laggins has a vision to create a <strong>WW2 Pacific Island hopping PvP server</strong> with our own custom map. This will be the first and only time we have intention to enter into the PvP space."
+          "a": "We've come a long way. <strong>Vietnam</strong> is live with two Legacy Pub servers plus the new Vietnam Warfare game mode. <strong>GWOT Takistan</strong> is live with 2 cooperative PvE servers — Humvee convoys, helicopter support, and a persistent battlefield. <strong>WW2 Normandy</strong> is also live with 2 cooperative PvE servers in the European theater. McLaggins and the Development team continue refining mission files, map assets, and game modes across all three theaters. Everything stays PvE — that hasn't changed."
         }
       ]
     },
