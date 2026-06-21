@@ -11,7 +11,7 @@
   html { scroll-behavior: smooth; }
   :root {
     --bg: #0a0a0a; --text: #c0c0c8; --red: #ff2a2a;
-    --owner: #ff2a2a; --senior: #e05a2a; --head: #e8a012; --admin: #7a8a6e; --special: #c4a243;
+    --owner: #ff2a2a; --senior: #e05a2a; --head: #e8a012; --admin: #7a8a6e; --special: #c4a243; --developer: #4a9eff;
     --dim: rgba(232,228,220,0.5); --dimmer: rgba(232,228,220,0.3); --dimmest: rgba(232,228,220,0.15);
     --line: rgba(255,255,255,0.06);
   }
@@ -154,10 +154,12 @@
   .member-card[data-role="head"] { border-left-color: var(--head); }
   .member-card[data-role="special"] { border-left-color: var(--special); }
   .member-card[data-role="admin"] { border-left-color: var(--admin); }
+  .member-card[data-role="developer"] { border-left-color: var(--developer); }
 
   .member-card:hover[data-role="owner"] { border-left-color: var(--owner); box-shadow: 0 0 12px rgba(255,42,42,0.2); }
   .member-card:hover[data-role="senior"] { border-left-color: var(--senior); box-shadow: 0 0 12px rgba(224,90,42,0.15); }
   .member-card:hover[data-role="head"] { border-left-color: var(--head); box-shadow: 0 0 12px rgba(232,160,18,0.15); }
+  .member-card:hover[data-role="developer"] { border-left-color: var(--developer); box-shadow: 0 0 12px rgba(74,158,255,0.2); }
 
   .member-avatar {
     width: 36px; height: 36px; border-radius: 50%;
@@ -185,6 +187,7 @@
   [data-role="head"] .member-role { color: var(--head); }
   [data-role="special"] .member-role { color: var(--special); }
   [data-role="admin"] .member-role { color: var(--admin); }
+  [data-role="developer"] .member-role { color: var(--developer); }
 
   .logo-bottom { display: block; margin: 40px auto 0; width: 120px; height: auto; animation: logoFlicker 5s infinite; animation-delay: 1.5s; }
 
@@ -361,6 +364,7 @@
     return role === 'owner' ? 'OWNER' :
            role === 'senior' ? 'SENIOR ADMIN' :
            role === 'head' ? 'HEAD ADMIN' :
+           role === 'developer' ? 'DEVELOPER' :
            role === 'special' ? '' : 'ADMIN';
   }
 
@@ -373,7 +377,7 @@
   function render(groups) {
     main.innerHTML = '';
     groups.forEach(function (group) {
-      var role = group.role || 'admin';
+      var role = (group.role || 'admin').toLowerCase();
       var roleLabel = roleLabelFor(role);
       var members = group.members || [];
 
