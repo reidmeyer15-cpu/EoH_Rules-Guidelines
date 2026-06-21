@@ -1,0 +1,137 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Friendlier editor workflow (Save as draft -> Publish). Set to "simple" to publish instantly.
+publish_mode: editorial_workflow
+
+# Where any uploaded images go (used if you add image fields later)
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: roster
+    label: "Team Roster"
+    files:
+      - name: team
+        label: "Meet the Team page"
+        file: "team.json"
+        format: json
+        description: "Add, remove, and reorder staff. Drag the ⠿ handles to reorder. Changes go live ~1 minute after publishing."
+        fields:
+          - label: "Sections"
+            name: groups
+            widget: list
+            label_singular: "Section"
+            summary: "{{fields.group}}  ({{fields.members.length}})"
+            collapsed: true
+            fields:
+              - { label: "Section heading", name: group, widget: string, hint: "e.g. Senior Admins" }
+              - label: "Rank colour"
+                name: role
+                widget: select
+                default: admin
+                options:
+                  - { label: "Owner — red", value: owner }
+                  - { label: "Head Admin — amber", value: head }
+                  - { label: "Senior Admin — orange", value: senior }
+                  - { label: "Management / Special — gold", value: special }
+                  - { label: "Admin — green", value: admin }
+              - label: "Members"
+                name: members
+                widget: list
+                label_singular: "Member"
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Title", name: title, widget: string, required: false, hint: "Optional. Blank = uses the section's default rank label." }
+                  - { label: "About", name: about, widget: text, required: false, hint: "Optional. Shows when the card is clicked." }
+                  - { label: "Glowing-fire name effect", name: glow, widget: boolean, required: false, default: false }
+
+  - name: faq
+    label: "FAQ"
+    files:
+      - name: faq
+        label: "FAQ page"
+        file: "faq.json"
+        format: json
+        description: "Edit the FAQ. Drag ⠿ handles to reorder sections and questions."
+        fields:
+          - label: "Sections"
+            name: sections
+            widget: list
+            label_singular: "Section"
+            summary: "{{fields.title}}"
+            collapsed: true
+            fields:
+              - { label: "Section heading", name: title, widget: string, hint: "e.g. SERVERS & GAMEPLAY" }
+              - label: "Questions"
+                name: questions
+                widget: list
+                label_singular: "Question"
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: "Question", name: q, widget: string }
+                  - { label: "Answer", name: a, widget: text, hint: "Basic HTML allowed: <strong>bold</strong>, <em>italic</em>, <a href=\"...\">links</a>, <br> for line breaks." }
+
+  - name: rules
+    label: "Rules"
+    files:
+      - name: rules
+        label: "Rules page"
+        file: "rules.json"
+        format: json
+        description: "Edit server rules. Each section holds charges. The Punishment Ladder and 'What Makes It Worse' lists are below the sections."
+        fields:
+          - label: "Rule Sections"
+            name: sections
+            widget: list
+            label_singular: "Rule Section"
+            summary: "{{fields.title}}"
+            collapsed: true
+            fields:
+              - { label: "Section heading", name: title, widget: string, hint: "e.g. TEAMKILLING" }
+              - { label: "ID (no spaces, used for links)", name: id, widget: string, pattern: ['^[a-z0-9-]+$', 'lowercase letters, numbers, and dashes only'] }
+              - { label: "Subtitle / source line", name: source, widget: string }
+              - label: "Charges"
+                name: charges
+                widget: list
+                label_singular: "Charge"
+                summary: "{{fields.section}} — {{fields.name}}"
+                fields:
+                  - { label: "Number (e.g. § 3.1)", name: section, widget: string }
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Description", name: body, widget: text }
+                  - { label: "Examples", name: examples, widget: list, required: false, field: { label: "Example", name: example, widget: string } }
+                  - { label: "Classification (staff-only text)", name: classification, widget: string }
+                  - label: "Severity colour"
+                    name: severity
+                    widget: select
+                    options:
+                      - { label: "Permanent Ban — red", value: perm }
+                      - { label: "1–2 Week Ban — deep orange", value: weekban }
+                      - { label: "1HR–3 Day Ban — orange", value: dayban }
+                      - { label: "Final Strike — amber", value: lastwarn }
+                      - { label: "Warning — green", value: warn }
+          - label: "Punishment Ladder"
+            name: sentencing
+            widget: list
+            label_singular: "Level"
+            summary: "{{fields.classification}}"
+            fields:
+              - { label: "Level name", name: classification, widget: string }
+              - { label: "What it means", name: sentence, widget: text }
+              - label: "Severity colour"
+                name: severity
+                widget: select
+                options:
+                  - { label: "Permanent Ban — red", value: perm }
+                  - { label: "1–2 Week Ban — deep orange", value: weekban }
+                  - { label: "1HR–3 Day Ban — orange", value: dayban }
+                  - { label: "Final Strike — amber", value: lastwarn }
+                  - { label: "Warning — green", value: warn }
+          - label: "What Makes It Worse (escalating factors)"
+            name: aggravating
+            widget: list
+            label_singular: "Factor"
+            field: { label: "Factor", name: factor, widget: string }

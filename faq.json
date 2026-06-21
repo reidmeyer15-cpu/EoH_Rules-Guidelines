@@ -1,0 +1,64 @@
+{
+  "sections": [
+    {
+      "title": "SUPPORT & TICKETS",
+      "questions": [
+        {
+          "q": "How do I create a ticket for player reports, bug reports, or other issues?",
+          "a": "Navigate to <strong>#create-a-ticket</strong> in our <a href=\"https://discord.gg/echoes-of-hell\" target=\"_blank\">Discord</a> and follow the prompts. We typically answer tickets within 30 minutes during normal hours. <strong>Creating a ticket regarding Ban Appeals or Staff Applications will not expedite their review.</strong>"
+        },
+        {
+          "q": "I've been banned — now what?",
+          "a": "Navigate to <strong>#public-strikes</strong> to review the reasoning. If you feel like you deserve a second chance and want to appeal, file a <strong>#ban-appeal-application</strong>. These are reviewed typically two to three times a week by our Head Admin."
+        }
+      ]
+    },
+    {
+      "title": "SERVERS & GAMEPLAY",
+      "questions": [
+        {
+          "q": "What's the difference between Vietnam Pub 1, 2, and 3?",
+          "a": "All 3 servers have the same mod list. <strong>Server 1</strong> typically has the highest pop — the higher the player count, the more chaos and the faster matches complete. <strong>Server 2</strong> typically holds between 50–90 during the week and max pop on weekends. It hosts our more organized players and is more challenging due to the lower player count. <strong>Server 3</strong> is the <em>hardcore</em> server — low player count means less help, less CAS, and a much harder time rolling through objectives. Server 3 is also our event server where most events are held. Navigate to <strong>#role-selection</strong> in Discord to be notified for all events including PTSD mode and more."
+        },
+        {
+          "q": "Can I play as NVA / PVP?",
+          "a": "Short answer, no. We operate purely PvE servers. The only time you will have player-controlled enemies is when admins are enhancing the experience with GM, usually with air since AI can't control it themselves. We do not pass out exceptions for notable people, content creators, other communities, etc."
+        },
+        {
+          "q": "How do I become XYZ role?",
+          "a": "Nothing on the server that's available as the US faction is limited to any specific role or squad type. You're free to play whatever you can get your hands on. One addendum: some vehicles are limited in quantity, particularly helicopters. Only <strong>3 transport, 2 armed transport, 1 medevac, and 1 gunship</strong> can be up at any given time for a total of 7. This prevents spam and too much balance shift towards air gameplay."
+        },
+        {
+          "q": "Are all the mods on your servers made by EoH?",
+          "a": "No — our servers run a mix of <strong>in-house mods</strong> built by our dev team and <strong>community-made mods</strong> from other creators. We hand-pick and configure every mod in our collection to make sure it fits the experience we're going for. Not everything is built by us, but we do the best we can with the staff we have. If you're a mod author and see your work on our servers, thank you — you're part of what makes this possible."
+        },
+        {
+          "q": "I want to start a squad or group — what are the rules?",
+          "a": "In-game squads are absolutely welcome within EoH — they're a great way to group up and enjoy the server together. Squads like Medcom, Ramblowns Medical School, Terry's Medics, and Air Cav are all good examples. However, creating or promoting <strong>external groups</strong> that pull players away from our Discord or servers is not allowed, as it leads to unnecessary drama and moderation headaches.<br><br>Squad promotion is fine in moderation, but <strong>excessive advertising, spamming, or pressuring players — especially in-game at MOB — will not be tolerated.</strong> Keep it chill and organic. These guidelines exist to maintain the quality, structure, and safe environment that EoH is built on. See <a href=\"rules.html\">§ 7.6</a> in the rules for full details."
+        }
+      ]
+    },
+    {
+      "title": "ROADMAP & FUTURE",
+      "questions": [
+        {
+          "q": "What's the roadmap for EoH?",
+          "a": "EoH Vietnam is on a steady path to completion. Each day McLaggins and the Development team chip away at perfecting the map and its assets. The current plan is to finish the mission file, push more map updates, and hopefully be complete by mid 2026. The team is also full steam ahead with a <strong>Global War on Terror Takistan PvE server</strong>. Nothing is set in stone, however we anticipate near completion within the next 30–60 days. When Vietnam nears completion, Laggins has a vision to create a <strong>WW2 Pacific Island hopping PvP server</strong> with our own custom map. This will be the first and only time we have intention to enter into the PvP space."
+        }
+      ]
+    },
+    {
+      "title": "STAFF & APPLICATIONS",
+      "questions": [
+        {
+          "q": "How do I become an admin?",
+          "a": "We encourage dedicated and knowledgeable players to put in an application in <strong>#staff-application</strong>. The form will be filled out in DMs with questions sent by our bot, then sent to us to review as a team and decided on by our head of onboarding. Answer truthfully and to the best of your ability with well-put language and grammar — we have denied people for lack of care in the past.<br><br>We're not always accepting new staff, but old applications will always be considered before new ones when we're looking to onboard more. Even if we're not currently hiring, go ahead and put in an application. <strong>Please don't make a ticket to ask about your app</strong> — they're reviewed only when we decide we're looking for more.<br><br>If accepted, you'll be given the Staff Candidate role and moved up to Probationary Admin following a roughly 2–3 hour training session to bring you up to speed with all our policies and the tools you'll have access to."
+        },
+        {
+          "q": "What does being an admin involve?",
+          "a": "A few things to know:<br><br>• <strong>You are an admin first, GM later.</strong> Being caught ignoring duties in favor of GMing will result in removal from the team.<br>• <strong>You must be 18 or older</strong> to become staff. Dealing with players and the Discord inherently means you're going to encounter subjects not fit for minors.<br>• <strong>You must be familiar with the rules.</strong> You're going to be responsible for calling the shots. You are the law in this position and will not always be advised by senior staff.<br>• <strong>You will need to commit a fair amount of time.</strong> This is a full-time, volunteer position. There will be times you're the only person available despite playing another game. You very well might not have time to play on the server normally anymore as staff."
+        }
+      ]
+    }
+  ]
+}

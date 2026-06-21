@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 80" width="14" height="80">
+  <defs>
+    <linearGradient id="filter" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4923a"></stop>
+      <stop offset="15%" stop-color="#d4a54e"></stop>
+      <stop offset="50%" stop-color="#e0b868"></stop>
+      <stop offset="85%" stop-color="#d4a54e"></stop>
+      <stop offset="100%" stop-color="#b8832e"></stop>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8e0d0"></stop>
+      <stop offset="20%" stop-color="#f5f0e8"></stop>
+      <stop offset="50%" stop-color="#fff"></stop>
+      <stop offset="80%" stop-color="#f5f0e8"></stop>
+      <stop offset="100%" stop-color="#ddd8c8"></stop>
+    </linearGradient>
+    <linearGradient id="ash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#888"></stop>
+      <stop offset="60%" stop-color="#666"></stop>
+      <stop offset="100%" stop-color="#444"></stop>
+    </linearGradient>
+    <linearGradient id="ember" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff6a00"></stop>
+      <stop offset="50%" stop-color="#ff3300"></stop>
+      <stop offset="100%" stop-color="#aa1100"></stop>
+    </linearGradient>
+  </defs>
+  
+  <rect x="2" y="55" width="10" height="24" rx="1" fill="url(#filter)" stroke="#a07828" stroke-width="0.3"></rect>
+  
+  <line x1="2" y1="58" x2="12" y2="58" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="61" x2="12" y2="61" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="64" x2="12" y2="64" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="67" x2="12" y2="67" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="70" x2="12" y2="70" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="73" x2="12" y2="73" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  <line x1="2" y1="76" x2="12" y2="76" stroke="#c49030" stroke-width="0.3" opacity="0.5"></line>
+  
+  <rect x="1.5" y="53.5" width="11" height="3" rx="0.5" fill="none" stroke="#d4a030" stroke-width="0.6" opacity="0.7"></rect>
+  
+  <rect x="2" y="8" width="10" height="47" rx="0.5" fill="url(#paper)" stroke="#ccc" stroke-width="0.3"></rect>
+  
+  <line x1="7" y1="8" x2="7" y2="55" stroke="#ddd5c5" stroke-width="0.3" opacity="0.4"></line>
+  
+  <rect x="2" y="3" width="10" height="6" rx="0.5" fill="url(#ash)" stroke="#555" stroke-width="0.2"></rect>
+  
+  <rect x="2.5" y="1" width="9" height="3" rx="1" fill="url(#ember)"></rect>
+  
+  <rect x="3" y="1.5" width="8" height="2" rx="0.8" fill="#ff5500" opacity="0.5"></rect>
+</svg>
