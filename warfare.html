@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echoes of Hell — WARFARE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root { --bg: #0a0a0a; --text: #c0c0c8; --red: #ff2a2a; --dim: rgba(192,192,200,0.5); --warfare: #ff5028; --warfare-dim: rgba(255,80,40,0.5); }
+  body { background: var(--bg); color: var(--text); font-family: 'PT Serif', Georgia, serif; font-size: 23px; -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(255,80,40,0.3); color: #fff; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,80,40,0.15); border-radius: 3px; }
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
+
+  @keyframes warfarePulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lineGrow { from { width: 0; } to { width: 80px; } }
+  @keyframes drift { 0% { transform: translateX(-5%); } 100% { transform: translateX(5%); } }
+  @keyframes glowWarfare { 0%, 100% { box-shadow: 0 0 24px rgba(255,80,40,0.25), 0 0 60px rgba(255,80,40,0.06); } 50% { box-shadow: 0 0 36px rgba(255,80,40,0.4), 0 0 80px rgba(255,80,40,0.12); } }
+
+  .bg-layer { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+  .bg-layer .bg-image { position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; background-size: cover; background-position: center; filter: grayscale(50%) brightness(0.16) contrast(1.15); animation: drift 30s ease-in-out infinite alternate; }
+  .bg-layer::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.85) 55%, var(--bg) 100%); z-index: 1; }
+  .vignette { position: fixed; inset: 0; z-index: 50; pointer-events: none; box-shadow: inset 0 0 200px 60px rgba(0,0,0,0.7); }
+
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0 24px; display: flex; align-items: center; justify-content: center; gap: 20px; height: 48px; animation: fadeIn 1s ease 0.2s both; }
+  .site-nav a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.4); text-decoration: none; padding: 14px 0; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  .site-nav a:hover { color: var(--text); }
+  .site-nav a.active { color: var(--warfare); border-bottom-color: var(--warfare); }
+  .site-nav .nav-logo { height: 28px; width: auto; margin-right: 16px; }
+
+  .hero { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 24px 40px; min-height: 70vh; }
+  .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 6px; color: var(--warfare-dim); margin-bottom: 24px; animation: warfarePulse 3s ease infinite, fadeUp 1s ease 0.4s both; }
+  .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(64px, 13vw, 160px); font-weight: 700; letter-spacing: 18px; text-transform: uppercase; color: rgba(255,255,255,0.95); line-height: 0.95; animation: fadeUp 1.2s ease 0.5s both; text-shadow: 0 0 80px rgba(255,80,40,0.15); }
+  .hero-sub { font-family: 'Oswald', sans-serif; font-size: clamp(14px, 2vw, 18px); font-weight: 300; letter-spacing: 6px; text-transform: uppercase; color: rgba(232,228,220,0.55); margin-top: 16px; animation: fadeUp 1s ease 0.8s both; }
+  .hero-bar { width: 0; height: 2px; background: var(--warfare); margin: 28px auto; box-shadow: 0 0 14px rgba(255,80,40,0.5); animation: lineGrow 0.8s ease 1.2s both; }
+  .hero-desc { max-width: 680px; font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.55); animation: fadeUp 1s ease 1.4s both; }
+  .hero-credit { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,80,40,0.7); margin-top: 24px; padding: 12px 24px; background: rgba(255,80,40,0.06); border: 1px solid rgba(255,80,40,0.2); animation: fadeUp 1s ease 1.6s both, glowWarfare 4s ease 2.6s infinite; }
+
+  .section-block { position: relative; z-index: 2; max-width: 1100px; margin: 80px auto 0; padding: 0 24px; animation: fadeUp 1s ease 1.8s both; }
+  .section-head { text-align: center; margin-bottom: 40px; }
+  .section-head .accent-line { display: inline-block; width: 60px; height: 1px; background: var(--warfare-dim); margin-bottom: 12px; }
+  .section-head h2 { font-family: 'Oswald', sans-serif; font-size: 26px; letter-spacing: 8px; text-transform: uppercase; color: rgba(255,255,255,0.92); margin: 0; font-weight: 600; }
+  .section-head p { font-family: 'PT Serif', serif; font-size: 14px; color: rgba(192,192,200,0.55); margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  /* Servers running WARFARE */
+  .servers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .wfsrv-card { padding: 22px; background: rgba(10,10,10,0.7); border: 1px solid rgba(255,80,40,0.15); border-left: 3px solid rgba(255,80,40,0.55); backdrop-filter: blur(6px); transition: all 0.3s ease; }
+  .wfsrv-card:hover { background: rgba(10,10,10,0.88); border-left-color: var(--warfare); transform: translateY(-2px); }
+  .wfsrv-era { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warfare-dim); margin-bottom: 8px; }
+  .wfsrv-name { font-family: 'Oswald', sans-serif; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: rgba(232,228,220,0.95); margin-bottom: 8px; }
+  .wfsrv-desc { font-size: 13px; color: rgba(192,192,200,0.55); line-height: 1.6; }
+
+  /* Features */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .feat-card { padding: 22px 24px; background: rgba(10,10,10,0.7); border: 1px solid rgba(255,80,40,0.08); border-left: 3px solid rgba(255,80,40,0.4); backdrop-filter: blur(6px); transition: all 0.3s ease; }
+  .feat-card:hover { background: rgba(10,10,10,0.88); border-left-color: var(--warfare); }
+  .feat-title { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,80,40,0.9); margin-bottom: 10px; }
+  .feat-desc { font-size: 13px; color: rgba(192,192,200,0.55); line-height: 1.7; }
+  .feat-desc strong { color: rgba(255,80,40,0.85); font-weight: 600; }
+
+  .closing { position: relative; z-index: 2; max-width: 760px; margin: 80px auto 0; padding: 0 24px; text-align: center; animation: fadeUp 1s ease 2s both; }
+  .closing p { font-family: 'PT Serif', serif; font-size: 16px; color: rgba(232,228,220,0.6); line-height: 1.8; font-style: italic; }
+
+  .back-link { position: relative; z-index: 2; text-align: center; margin-top: 64px; padding-bottom: 40px; }
+  .back-link a { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(192,192,200,0.25); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+  .back-link a:hover { color: var(--dim); border-bottom-color: rgba(255,80,40,0.4); }
+
+  footer { position: relative; z-index: 2; text-align: center; padding: 20px; }
+  footer .version { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(192,192,200,0.1); }
+
+  @media (max-width: 600px) {
+    .hero-title { letter-spacing: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-image" style="background-image: url('images/img-15.jpg');"></div>
+</div>
+<div class="vignette"></div>
+
+<nav class="site-nav">
+  <img class="nav-logo" src="images/img-02.png" alt="EoH">
+  <a href="index.html">Home</a>
+  <a href="rules.html">Rules</a>
+  <a href="team.html">Meet the Team</a>
+  <a href="faq.html">FAQ</a>
+  <a href="vietnam.html">Vietnam</a>
+  <a href="coming-soon.html">Takistan</a>
+  <a href="ww2.html">WW2</a>
+  <a href="squad.html">Squads</a>
+  <a href="mods.html">Mods</a>
+  <a href="game.html">&#9734;</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">&#9670; The Next Generation of PvE &#9670;</div>
+  <h1 class="hero-title">Warfare</h1>
+  <div class="hero-sub">Large-Scale Conflict &bull; Combat Operations</div>
+  <div class="hero-bar"></div>
+  <p class="hero-desc">
+    Built from the ground up using advanced systems both inside and beyond the engine,
+    WARFARE delivers the next evolution of large-scale Conflict and Combat Operations
+    combined into one complete experience. Designed as a full-scale production, WARFARE
+    pushes beyond traditional PvE frameworks to create intense, dynamic, and immersive
+    battlefields unlike anything before.
+  </p>
+  <div class="hero-credit">Powered by TASK FORCE GHOST</div>
+</div>
+
+<!-- LIVE ON EOH -->
+<div class="section-block">
+  <div class="section-head">
+    <div class="accent-line"></div>
+    <h2>Live on EoH</h2>
+    <p>WARFARE powers <strong style="color: rgba(255,80,40,0.9);">5 of our 7 servers</strong> &mdash; running across three eras, each crafted around its own conflict, authentic weapons, vehicles, and atmosphere.</p>
+  </div>
+  <div class="servers-grid">
+    <a href="vietnam.html#warfare" style="text-decoration: none; color: inherit;">
+      <div class="wfsrv-card">
+        <div class="wfsrv-era">&#9670; Vietnam Era &#9670;</div>
+        <div class="wfsrv-name">Vietnam Warfare 1</div>
+        <div class="wfsrv-desc">Jungle combat operations. Hueys, M16s, and contested hilltops &mdash; the Vietnam era reimagined through WARFARE's dynamic objective system.</div>
+      </div>
+    </a>
+    <a href="coming-soon.html" style="text-decoration: none; color: inherit;">
+      <div class="wfsrv-card">
+        <div class="wfsrv-era">&#9670; GWOT Takistan &#9670;</div>
+        <div class="wfsrv-name">Takistan Pub 1</div>
+        <div class="wfsrv-desc">Modern GWOT combat ops. Humvee convoys, helicopter support, and a persistent battlefield across the arid mountains and valleys of Takistan.</div>
+      </div>
+    </a>
+    <a href="coming-soon.html" style="text-decoration: none; color: inherit;">
+      <div class="wfsrv-card">
+        <div class="wfsrv-era">&#9670; GWOT Takistan &#9670;</div>
+        <div class="wfsrv-name">Takistan Pub 2</div>
+        <div class="wfsrv-desc">Same ruleset, additional capacity. Run organized small-team ops or fill in when Pub 1 hits capacity.</div>
+      </div>
+    </a>
+    <a href="ww2.html" style="text-decoration: none; color: inherit;">
+      <div class="wfsrv-card">
+        <div class="wfsrv-era">&#9670; WW2 Normandy &#9670;</div>
+        <div class="wfsrv-name">WW2 Pub 1</div>
+        <div class="wfsrv-desc">Period-correct European theater. Hedgerows, villages, and farms. M1 Garands, Thompsons, Shermans &mdash; the works.</div>
+      </div>
+    </a>
+    <a href="ww2.html" style="text-decoration: none; color: inherit;">
+      <div class="wfsrv-card">
+        <div class="wfsrv-era">&#9670; WW2 Normandy &#9670;</div>
+        <div class="wfsrv-name">WW2 Pub 2</div>
+        <div class="wfsrv-desc">Smaller-scale Normandy ops &mdash; tighter teams, more challenging engagements, same period authenticity.</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section-block">
+  <div class="section-head">
+    <div class="accent-line"></div>
+    <h2>What Makes WARFARE</h2>
+    <p>A complete production designed for total immersion. These aren't bullet points &mdash; they're how every WARFARE session actually feels.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-title">Immersive Full-Scale Production</div>
+      <div class="feat-desc">Every WARFARE is crafted around a <strong>specific era</strong>, bringing its conflict to life through authentic weapons, vehicles, gear, environments, and atmosphere. Not a universal mode &mdash; a carefully designed experience built for total immersion.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Dynamic Battlefield Systems</div>
+      <div class="feat-desc">No two sessions play the same. Objectives, enemy activity, encounters, and battlefield events <strong>dynamically shift</strong>, creating unpredictable combat scenarios that keep every operation fresh.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Major &amp; Minor Capture Points</div>
+      <div class="feat-desc">WARFARE revives the classic Conflict experience with <strong>heavily contested Major Capture Points</strong> serving as the key to victory. Advance through connected Minor Capture Points to establish forward momentum and secure the battlefield.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Combat Objective Zones</div>
+      <div class="feat-desc">Take on optional <strong>Combat Operations</strong> across the map with a small team to infiltrate enemy territory, complete randomized objectives, and earn valuable rewards for your efforts.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">The Fight Between Objectives</div>
+      <div class="feat-desc">The battlefield is never safe. Between capture points, expect <strong>enemy patrols, ambushes, counterattacks</strong>, and unexpected encounters that turn every movement into a mission of its own.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Immersive Battlefield Events</div>
+      <div class="feat-desc">Built-in ambient combat systems &mdash; <strong>mortar strikes, minefields, ambushes</strong>, and era-specific battlefield threats that add another layer of tension and realism to every engagement.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Advanced AI Behaviors (CRX)</div>
+      <div class="feat-desc">Powered by <strong>CRX</strong>, WARFARE introduces enhanced AI behaviors designed to create more aggressive, tactical, and unpredictable enemy forces that operate far beyond standard Vanilla AI.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Enemy Vehicles &amp; Patrols</div>
+      <div class="feat-desc">Ambient <strong>enemy vehicle patrols</strong>, counters, and systems that engage more than just boots on the ground. Enemies push objectives in vehicles, patrol streets, and reinforce themselves with troop transports.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">A Tactical Team Experience</div>
+      <div class="feat-desc">WARFARE rewards <strong>teamwork, coordination, and communication</strong>. Whether operating in a small squad or a larger force, success depends on planning, cooperation, and tactical execution under pressure.</div>
+    </div>
+  </div>
+</div>
+
+<div class="closing">
+  <p>
+    "WARFARE is built to deliver a new standard for immersive PvE combat. As development continues,
+    the mission remains the same &mdash; create a battlefield experience that feels intense, tactical,
+    and unforgettable."
+  </p>
+</div>
+
+<div class="back-link">
+  <a href="index.html">&larr; Back to Home</a>
+</div>
+
+<footer><p class="version">ECHOES OF HELL &mdash; WARFARE</p></footer>
+
+</body>
+</html>
